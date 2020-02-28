@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<form action="enregistrement.php" method="post">
-			<input type="text" name="article" value="entrez du texte ici">
+			<textarea name="article" rows="8" cols="80"></textarea>
 			<input type="submit" name="bouton" value="envoyer">
 		</form>
 	</body>

@@ -3,23 +3,15 @@
    <head>
 	   <meta charset="utf-8">
 	   <title>Espace de création de comptes</title>
-	   <style>
-	   #espaceErreur {
-			font-weight: bold;
-			margin-bottom: 50px;
-			background: #ddd;
-			text-align: center;
-			padding: 10px;
-			border-radius: 10px;
-		}
-		body {
-			margin: 10px 10%;
-			font-family: sans-serif;
-		}
-	   </style>
+	   <link rel="stylesheet" href="gestion_style.css">
    </head>
    <body>
+	   <p id="gestionNav">
+		   <a href="gestion_index.php">Espace de gestion</a> >
+		   <a href="gestion_accounts.php">Formulaire de création de comptes</a>
+	   </p>
 	   <div id="espaceErreur">
+		   <h1>Formulaire de création de comptes</h1>
 			<?php
 			$fileToEdit = "art1.html";
 
@@ -29,7 +21,7 @@
 				}
 				if ( empty($_POST["password"]) ) {
 					// Si le password est vide, faire :
-					return "Erreur : pas de password !";
+					return "Erreur : pas de mot de passe envoyé. Retournez en arrière !";
 				}
 				if ($_POST["password"] !== "admin") {
 					return "Erreur : mauvais mot de passe";
@@ -49,9 +41,9 @@
 					$status = "Professeur";
 				}
 				// tout est okay !!
-				$valeurRetour  = "Nom envoyé : " . $_POST["name"];
-				$valeurRetour .= " Date d'anniv: " . $_POST["birthday"];
-				$valeurRetour .= " Statut : " . $status;
+				$valeurRetour  = "Nom envoyé : <i>" . $_POST["name"] . "</i>";
+				$valeurRetour .= " Date d'anniv: <i>" . $_POST["birthday"] . "</i>";
+				$valeurRetour .= " Statut : <i>" . $status . "</i>";
 
 				return $valeurRetour;
 			}
@@ -60,24 +52,23 @@
 			 ?>
 	 	</div>
 
-
-		<form action="gestion_accounts.php" method="post">
-			<div style="float: right;border-left: 1px solid grey;padding: 30px;">
-				<p>Entrez le mot de passe pour valider</p>
-				<input type="password" name="password" value="">
+		<form action="gestion_accounts.php" method="post"> <table><tbody><tr>
+			<td>
+				<input type="text" name="name" value="NOM prénom">
 				<br><br>
-				<input type="submit" name="bouton" value="envoyer">
-			</div>
-
-
-			<input type="text" name="name" value="NOM prénom">
-			<br><br>
-			<input type="date" name="birthday" value="2000-01-01">
-			<br><br>
-			<select name="status">
-				<option value="">Élève</option>
-				<option value="true">Professeur</option>
-			</select>
-		</form>
+				<input type="date" name="birthday" value="2000-01-01" data-kwimpalastatus="alive" data-kwimpalaid="1583498132459-4">
+				<br><br>
+				<select name="status">
+					<option value="">Élève</option>
+					<option value="true">Professeur</option>
+				</select>
+			</td>
+			<td id="formValidation">
+				<p>Entrez le mot de passe pour valider</p>
+				<input type="password" name="password" value="" data-kwimpalastatus="alive" data-kwimpalaid="1583498132459-2">
+				<br><br>
+				<input type="submit" name="bouton" value="envoyer" id="submitBtn">
+			</td>
+		</tr></tbody></table> </form>
 	</body>
 </html>

@@ -3,14 +3,15 @@
    <head>
 	   <meta charset="utf-8">
 	   <title>Espace de modification d'article</title>
-	   <style>
-	   	#espaceErreur {
-			font-weight: bold;
-		}
-	   </style>
+	   <link rel="stylesheet" href="gestion_style.css">
    </head>
    <body>
+	   <p id="gestionNav">
+		   <a href="gestion_index.php">Espace de gestion</a> >
+		   <a href="gestion_news.php">Modification de "art 1"</a>
+	   </p>
 	   <div id="espaceErreur">
+		   <h1>Modification de "art1"</h1>
 			<?php
 			$fileToEdit = "art1.html";
 			if ( ! empty($_POST["bouton"]) ) {
@@ -33,8 +34,8 @@
 			 ?>
 	 	</div>
 		<form action="gestion_news.php" method="post">
-			<textarea name="article" rows="8" cols="80"><?php include($fileToEdit); ?></textarea>
-			<input type="submit" name="bouton" value="envoyer">
+			<textarea name="article" rows="8" cols="80"><?php include($fileToEdit); ?></textarea><br>
+			<input type="submit" name="bouton" value="envoyer" id="submitBtn">
 		</form>
 	</body>
 </html>

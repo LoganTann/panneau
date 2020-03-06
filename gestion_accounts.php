@@ -4,8 +4,17 @@
 	   <meta charset="utf-8">
 	   <title>Espace de création de comptes</title>
 	   <style>
-	   	#espaceErreur {
+	   #espaceErreur {
 			font-weight: bold;
+			margin-bottom: 50px;
+			background: #ddd;
+			text-align: center;
+			padding: 10px;
+			border-radius: 10px;
+		}
+		body {
+			margin: 10px 10%;
+			font-family: sans-serif;
 		}
 	   </style>
    </head>

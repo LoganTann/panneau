@@ -21,7 +21,6 @@
 				} else {
 					$articleContent = $_POST["article"];
 					// Si c'est okay alors :
-					$articleContent = str_replace("\n", "<br>", $articleContent);
 					file_put_contents($fileToEdit, $articleContent);
 
 					echo "Texte modifié avec succès !<br>";
@@ -34,9 +33,7 @@
 			 ?>
 	 	</div>
 		<form action="gestion_news.php" method="post">
-			<textarea name="article" rows="8" cols="80">
-				<?php include($fileToEdit); ?>
-			</textarea>
+			<textarea name="article" rows="8" cols="80"><?php include($fileToEdit); ?></textarea>
 			<input type="submit" name="bouton" value="envoyer">
 		</form>
 	</body>

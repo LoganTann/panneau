@@ -13,8 +13,9 @@ Article 1 :
 		$texte = file_get_contents("fond.txt");
 		print($texte);*/
 
-		include("art1.html");
-
+		$articleContent = file_get_contents("art1.html");
+		$articleTraité = str_replace("\n", "<br>", $articleContent);
+		echo $articleTraité;
 		 ?>
 	</body>
 </html>

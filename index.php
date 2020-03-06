@@ -7,6 +7,7 @@
 	<body>
 
 Article 1 :
+<br>
 		<?php
 		/*
 		$texte = file_get_contents("fond.txt");

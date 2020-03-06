@@ -7,15 +7,10 @@
 	<body>
 
 Article 1 :
-<br>
-		<?php
-		/*
-		$texte = file_get_contents("fond.txt");
-		print($texte);*/
-
+		<p><?php
 		$articleContent = file_get_contents("art1.html");
 		$articleTraité = str_replace("\n", "<br>", $articleContent);
 		echo $articleTraité;
-		 ?>
+		 ?></p>
 	</body>
 </html>

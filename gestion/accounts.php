@@ -31,7 +31,7 @@
 					return "Erreur : pas de nom !";
 				}
 				if ( empty($_POST["birthday"]) ) {
-					// Si le nom est vide, faire :
+					// Si l'anniversaire est vide, faire :
 					return "Erreur : Pas de date d'anniversaire valide !";
 				}
 

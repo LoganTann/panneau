@@ -4,6 +4,12 @@
 	   <meta charset="utf-8">
 	   <title>Espace de modification d'article</title>
 	   <link rel="stylesheet" href="gestion_style.css">
+	   <style>
+	   	textarea {
+			height: 70vh; /* 70 view (écran) height*/
+			margin-top: 20px;
+		}
+	   </style>
    </head>
    <body>
 	   <p id="gestionNav">
@@ -34,8 +40,8 @@
 			 ?>
 	 	</div>
 		<form action="gestion_news.php" method="post">
-			<textarea name="article" rows="8" cols="80"><?php include($fileToEdit); ?></textarea><br>
 			<input type="submit" name="bouton" value="envoyer" id="submitBtn">
+			<textarea name="article" rows="8" cols="80"><?php include($fileToEdit); ?></textarea><br>
 		</form>
 	</body>
 </html>

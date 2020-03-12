@@ -30,6 +30,7 @@
 				<li>la page gestion compte doit avoir le choix du compte à modifier.</li>
 				<li>la page gestion article doit lister les articles diponibles.</li>
 				<li>faire la page d'affichage pour des articles multiples.</li>
+				<li>faire un système de session afin de ne pas avoir à taper le mdp tt le temps</li>
 			<ul>
 		</div>
 	</body>

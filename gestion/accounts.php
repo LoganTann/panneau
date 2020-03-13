@@ -3,12 +3,12 @@
    <head>
 	   <meta charset="utf-8">
 	   <title>Espace de création de comptes</title>
-	   <link rel="stylesheet" href="gestion_style.css">
+	   <link rel="stylesheet" href="style.css">
    </head>
    <body>
 	   <p id="gestionNav">
-		   <a href="gestion_index.php">Espace de gestion</a> >
-		   <a href="gestion_accounts.php">Formulaire de création de comptes</a>
+		   <a href="index.php">Espace de gestion</a> >
+		   <a href="accounts.php">Formulaire de création de comptes</a>
 	   </p>
 	   <div id="espaceErreur">
 		   <h1>Formulaire de création de comptes</h1>
@@ -52,7 +52,7 @@
 			 ?>
 	 	</div>
 
-		<form action="gestion_accounts.php" method="post"> <table><tbody><tr>
+		<form action="accounts.php" method="post"> <table><tbody><tr>
 			<td>
 				<input type="text" name="name" value="NOM prénom">
 				<br><br>

@@ -8,7 +8,7 @@
 
 Article 1 :
 		<p><?php
-		$articleContent = file_get_contents("art1.html");
+		$articleContent = file_get_contents("articles/art1.html");
 		$articleTraité = str_replace("\n", "<br>", $articleContent);
 		echo $articleTraité;
 		 ?></p>

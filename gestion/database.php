@@ -1,15 +1,13 @@
 <?php
 
+include("functions.php");
+//$reponse = $db->query('SELECT * FROM `accounts`');
 
+// récupérer tous les profs absents
+//  $reponse = $db->query('SELECT name FROM accounts WHERE is_here=0 AND is_student=0');
+editInfos($db, "lapatate", "2000-06-27", 1, 0);
 
-try {
-    $db = new PDO('mysql:host=localhost;dbname=panneau;charset=utf8', 'root', "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-}
-catch(Exception $e) { die('Erreur : '.$e->getMessage()); }
-
-
-$reponse = $db->query('SELECT * FROM `accounts`');
-
+/*
 while ($donnees = $reponse->fetch()) {
 	// `card_id`, `name`, `birthday`, `is_student`, `is_here`
 	echo "<hr>";
@@ -21,8 +19,7 @@ while ($donnees = $reponse->fetch()) {
 		echo "adulte";
 	}
 	echo "<br>", ($donnees["is_here"])? "Présent aujd" : "Absent aujd";
-}
-//include("functions.php");
+}*/
 
 
 ?>

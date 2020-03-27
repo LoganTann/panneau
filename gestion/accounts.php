@@ -8,6 +8,7 @@
    <body>
 	   <p id="gestionNav">
 		   <a href="index.php">Espace de gestion</a> >
+       <a href="choose.php">Gestion des comptes</a> >
 		   <a href="accounts.php">Formulaire de création de comptes</a>
 	   </p>
 	   <div id="espaceErreur">

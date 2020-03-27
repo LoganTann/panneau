@@ -19,6 +19,11 @@
 				<li><a href="liste_fichiers.php">Modifier la nouvelle</a></li>
 			</ul>
 
+			<p>Test :</p>
+			<ul>
+				<li><a href="choose.php">Gestion des comptes</a></li>
+			</ul>
+
 			<p>Indisponible :</p>
 			<ul>
 				<li><a href="#">Signaler une absence</a></li>

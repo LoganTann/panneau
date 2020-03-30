@@ -56,7 +56,7 @@
 				</select>
 			</td>
 			<td id="formValidation">
-				<input type="submit" name="bouton" value="envoyer" id="submitBtn">
+				<input type="submit" name="bouton" value="envoyer  " id="submitBtn">
 			</td>
 		</tr></tbody></table> </form>
 	</body>

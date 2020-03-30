@@ -37,13 +37,16 @@
       echo register();
       ?>
     </div>
-    <form action="register.php" method="post">
-      Entre ton identifiant :
-      <input type="text" name="identifiant" value=""> <br><br>
-      Tape ton mot de passe :
-      <input type="password" name="password2" value=""> <br><br>
-      <input type="submit" name="bouton2" value="valider" id="submitBtn">
-
+    <form action="register.php" method="post"> <table><tbody><tr>
+      <td>
+        Entre ton identifiant :
+        <input type="text" name="identifiant" value=""> <br><br>
+        Tape ton mot de passe :
+        <input type="password" name="password2" value=""> <br><br>
+      </td>
+      <td id="formValidation">
+        <input type="submit" name="bouton2" value="valider  " id="submitBtn">
+      </td>
     </form>
   </body>
 </html>

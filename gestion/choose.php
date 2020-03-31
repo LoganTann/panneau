@@ -13,9 +13,6 @@
 		<div id="espaceErreur">
 			<h1>Gestion des comptes</h1>
     </div>
-    <p>
-      <a class="btn_register" href="register.php">Sign in</a>
-    </p>
     <p class="mid">
       <a class="btn_l" href="accounts.php">Pour créer un compte</a>
       <a class="btn_r" href="#">Pour modifier un compte</a>

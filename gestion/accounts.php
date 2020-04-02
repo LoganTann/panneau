@@ -57,7 +57,7 @@
 			<td>
 				<input type="text" name="name" value="NOM prénom">
 				<br><br>
-				<input type="date" name="birthday" value="2000-01-01" data-kwimpalastatus="alive" data-kwimpalaid="1583498132459-4">
+				<input type="date" name="birthday" value="2000-01-01">
 				<br><br>
 				<select name="status">
 					<option value="">Élève</option>
@@ -66,7 +66,7 @@
 			</td>
 			<td id="formValidation">
 				<p>Entrez le mot de passe pour valider</p>
-				<input type="password" name="password" value="" data-kwimpalastatus="alive" data-kwimpalaid="1583498132459-2">
+				<input type="password" name="password" value="">
 				<br><br>
 				<input type="submit" name="bouton" value="envoyer" id="submitBtn">
 			</td>

@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  $_SESSION["admin"] = false;
+ ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
@@ -30,7 +34,8 @@
         if ($_POST["password2"] !== "admin") {
           return "Erreur : mauvais mot de passe";
         }
-          header("Location:accounts_admin.php");
+          $_SESSION["admin"] = true;
+          header("Location:index.php");
           exit;
       }
 

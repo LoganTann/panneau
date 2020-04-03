@@ -1,3 +1,6 @@
+<?php
+	session_start();
+ ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 	<head>
@@ -13,6 +16,13 @@
 			<h1>Espace de gestion</h1>
 		</div>
 		<div class="biggerText">
+			<?php
+				if ( empty($_SESSION["admin"]) ) {
+					echo '<a href="register.php">Sign in</a>';
+				}else {
+					echo "Tu es admin";
+				}
+			 ?>
 			<p>Disponible :</p>
 			<ul>
 				<li><a href="accounts.php">Ajouter un compte</a></li>

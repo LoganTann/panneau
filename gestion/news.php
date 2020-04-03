@@ -51,7 +51,9 @@ $fileToEdit = $_GET['article'];
 			 echo '
 			<form action="?" method="post">
 				<input type="submit" name="bouton" value="envoyer" id="submitBtn">
-				<textarea name="article" rows="8" cols="80"> <?php if (!empty($fileToEdit)){include($fileToEdit);} ?></textarea><br>
+				<textarea name="article" rows="8" cols="80">';
+				if (!empty($fileToEdit)){include($fileToEdit);}
+			echo '</textarea><br>
 			</form>';
 		  } ?>
 	</body>

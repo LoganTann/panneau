@@ -5,12 +5,17 @@
 		<title></title>
 	</head>
 	<body>
-
-Article 1 :
-		<p><?php
-		$articleContent = file_get_contents("articles/art1.html");
-		$articleTraité = str_replace("\n", "<br>", $articleContent);
-		echo $articleTraité;
-		 ?></p>
+		<?php
+		$art = glob("articles/*.html");
+		$i = 1;
+		foreach($art as $v){
+			echo "<h1>Article ".$i."</h1>";
+			echo '<p>';
+			$articleContent = file_get_contents($v);
+			$articleTraité = str_replace("\n", "<br>", $articleContent);
+			echo $articleTraité."</p>";
+			$i++;
+		}
+			 ?>
 	</body>
 </html>

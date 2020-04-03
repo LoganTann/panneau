@@ -1,7 +1,13 @@
 <?php
-
-$fileToEdit = $_GET["article"];
-
+session_start();
+if (isset($_GET['article'])){
+$_SESSION['article'] = $_GET["article"];
+$fileToEdit = $_GET['article'];
+} elseif (isset($_SESSION['article'])){
+	$fileToEdit = $_SESSION['article'];
+}else{
+	$fileToEdit = "";
+}
  ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -29,7 +35,7 @@ $fileToEdit = $_GET["article"];
 				if ( empty($_POST["article"]) ) {
 					// Si l'article est vide, faire :
 					echo "Erreur : texte vide !";
-				} else {
+				} elseif(!empty($fileToEdit)) {
 					$articleContent = $_POST["article"];
 					// Si c'est okay alors :
 					file_put_contents($fileToEdit, $articleContent);
@@ -45,7 +51,7 @@ $fileToEdit = $_GET["article"];
 	 	</div>
 		<form action="?" method="post">
 			<input type="submit" name="bouton" value="envoyer" id="submitBtn">
-			<textarea name="article" rows="8" cols="80"><?php include($fileToEdit); ?></textarea><br>
+			<textarea name="article" rows="8" cols="80"><?php if (!empty($fileToEdit)){include($fileToEdit);} ?></textarea><br>
 		</form>
 	</body>
 </html>

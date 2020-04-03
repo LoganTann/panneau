@@ -15,6 +15,7 @@
  	   </div>
 
 		<?php
+		session_start();
 		$liste_fichiers = glob("../articles/*.html");
 		foreach ($liste_fichiers as $value) {
 			echo "<a href='news.php?article=$value'>$value</a><br>";

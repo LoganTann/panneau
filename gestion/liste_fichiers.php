@@ -16,10 +16,14 @@
 
 		<?php
 		session_start();
-		$liste_fichiers = glob("../articles/*.html");
-		foreach ($liste_fichiers as $value) {
-			echo "<a href='news.php?article=$value'>$value</a><br>";
-		}
+		if (isset($_SESSION['isadmin'])){
+			$liste_fichiers = glob("../articles/*.html");
+			$i = 1;
+			foreach ($liste_fichiers as $value) {
+				echo "<a href='news.php?article=$value'>Article $i</a><br>";
+				$i++;
+			}
+	    }
 		?>
  	</body>
  </html>

@@ -52,7 +52,10 @@ $fileToEdit = $_GET['article'];
 			<form action="?" method="post">
 				<input type="submit" name="bouton" value="envoyer" id="submitBtn">
 				<textarea name="article" rows="8" cols="80">';
-				if (!empty($fileToEdit)){include($fileToEdit);}
+					$new = file_exists($fileToEdit);
+					if (!empty($fileToEdit && $new == True)){
+						include($fileToEdit);
+					}
 			echo '</textarea><br>
 			</form>';
 		  } ?>

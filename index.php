@@ -8,25 +8,25 @@
 	<body>
 		<div id="header">
 			<div id="Banner">
-				<h1>LPL - Tableau de bord</h1>
+				<h1 id="BannerTitle">LPL - Tableau de bord</h1>
 			</div>
 		</div>
 		<div id="content">
 		<?php
-		$art = glob("articles/*.html");
-		$i = 1;
-		foreach($art as $v){
-			echo '<div class="article">';
-			echo "<h1 class=\"ArticleTitle\">Article ".$i."</h1>";
-			echo '<div class="ArticleContent">';
-			echo '<p>';
-			$articleContent = file_get_contents($v);
-			$articleTraité = str_replace("\n", "<br>", $articleContent);
-			echo $articleTraité."</p>";
-			echo '</div>';
-			echo '</div>';
-			$i++;
-		}
+			$art = glob("articles/*.html");
+			$i = 1;
+			foreach($art as $v){
+				echo '<div class="Article">';
+				echo "<h1 class=\"ArticleTitle\">Article ".$i."</h1>";
+				echo '<div class="ArticleContent">';
+				echo '<p>';
+				$articleContent = file_get_contents($v);
+				$articleTraité = str_replace("\n", "<br>", $articleContent);
+				echo $articleTraité."</p>";
+				echo '</div>';
+				echo '</div>';
+				$i++;
+			}
 		?>
 		</div>
 	</body>

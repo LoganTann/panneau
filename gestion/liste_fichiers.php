@@ -15,10 +15,15 @@
  	   </div>
 
 		<?php
-		$liste_fichiers = glob("../articles/*.html");
-		foreach ($liste_fichiers as $value) {
-			echo "<a href='news.php?article=$value'>$value</a><br>";
-		}
+		session_start();
+		if (isset($_SESSION['isadmin'])){
+			$liste_fichiers = glob("../articles/*.html");
+			$i = 1;
+			foreach ($liste_fichiers as $value) {
+				echo "<a href='news.php?article=$value'>Article $i</a><br>";
+				$i++;
+			}
+	    }
 		?>
  	</body>
  </html>

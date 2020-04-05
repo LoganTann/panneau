@@ -1,5 +1,9 @@
 <?php
 // TODO: Fusionner accounts et accounts_admin qui possèdent la même fonction.
+
+include 'functions.php';
+abortIfNotAdmin();
+
  ?><!DOCTYPE html>
 <html lang="fr" dir="ltr">
    <head>

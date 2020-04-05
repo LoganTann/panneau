@@ -3,6 +3,11 @@
  * utilitaires automatisant certaines tâches. à importer avec include.
 */
 
+// Création d'une session.
+session_start();
+
+// Détermine si la session actuelle n'est pas connectée en tant qu'admin (automatique)
+$isNotAdmin = empty($_SESSION["admin"]);
 
 // Connection à la base de donnée (automatique)
 try {
@@ -12,11 +17,22 @@ try {
 }
 catch(Exception $e) { die('Erreur : '.$e->getMessage()); }
 
-// Détermine si la session actuelle est connectée en tant qu'admin (automatique)
-$isConnectedAsAdmin = ! empty($_SESSION["admin"]);
 
 
 // FONCTIONS :
+
+function abortIfNotAdmin() {
+	if ($isNotAdmin) {
+		?> <!DOCTYPE html> <html> <head> <meta charset="utf-8"> <title>Forbidden access</title> </head> <body>
+
+		<h2>Forbidden Access</h2>
+		<p>Vous n'avez pas les droits pour accéder à cette page. Merci de <a href='/gestion/'>vous connecter</a>.</p>
+
+		</body> </html> <?php
+		// Quitte le script
+		die();
+	}
+}
 
 function listFilesInsideFolder($pattern = "./") {
 	/*	Retourne la liste de tous les fichiers correspondant à $pattern

@@ -6,7 +6,7 @@
 <html lang="fr" dir="ltr">
 	<head>
 		<meta charset="utf-8">
-		<title>Espace de modification d'article</title>
+		<title>Espace de gestion</title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>

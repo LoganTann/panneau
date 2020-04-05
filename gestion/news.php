@@ -2,7 +2,9 @@
 
 // Espace de modification / création d'articles
 
-session_start();
+include 'functions.php';
+abortIfNotAdmin();
+
 if (isset($_GET['article'])){
 	$_SESSION['article'] = $_GET["article"];
 	$fileToEdit = $_GET['article'];

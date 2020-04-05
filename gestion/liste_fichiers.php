@@ -11,7 +11,7 @@
  		   <a href="accounts.php">Formulaire de création de comptes</a>
  	   </p>
  	   <div id="espaceErreur">
- 		   <h1>Liste des articles pour édtiter</h1>
+ 		   <h1>Liste des articles à éditer</h1>
  	   </div>
 
 		<?php

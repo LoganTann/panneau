@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+// TODO: Fusionner accounts et accounts_admin qui possèdent la même fonction.
+ ?><!DOCTYPE html>
 <html lang="fr" dir="ltr">
    <head>
 	   <meta charset="utf-8">

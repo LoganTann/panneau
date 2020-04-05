@@ -1,4 +1,7 @@
 <?php
+
+// Formilaire de connection en tant qu'admin pour accéder aux fonctions d'administration
+
   session_start();
   $_SESSION["admin"] = false;
  ?>

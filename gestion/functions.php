@@ -3,11 +3,20 @@
  * utilitaires automatisant certaines tâches. à importer avec include.
 */
 
+
+// Connection à la base de donnée (automatique)
 try {
-    $db = new PDO('mysql:host=localhost;dbname=panneau;charset=utf8', 'root', "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+	$dbID = 'root';
+	$dbPassword = '';
+    $db = new PDO('mysql:host=localhost;dbname=panneau;charset=utf8', $dbID, $dbPassword, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 catch(Exception $e) { die('Erreur : '.$e->getMessage()); }
 
+// Détermine si la session actuelle est connectée en tant qu'admin (automatique)
+$isConnectedAsAdmin = ! empty($_SESSION["admin"]);
+
+
+// FONCTIONS :
 
 function listFilesInsideFolder($pattern = "./") {
 	/*	Retourne la liste de tous les fichiers correspondant à $pattern

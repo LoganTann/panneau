@@ -77,4 +77,32 @@ function getAllStudentNames($db) {
 	return $retval;
 }
 
+
+// HTML shortcuts (make better code)
+function p($content) {
+	return "<p> $content </p>";
+}
+function br() {
+	return "<br>";
+}
+function a($href, $content="") {
+	if ($content == "") {
+		$content = $href;
+	}
+	return "<a href='$href'> $content </a>";
+}
+function ul(...$listItems) { // ... = arguments en nombre infini dans une liste
+	$retval = "<ul>";
+	foreach ($item as $listItems) {
+		$retval .= "<li>$item</li>";
+	}
+	$retval .= "</ul>";
+	return $retval;
+}
+function form($content, $action = "?", $method="POST") {
+	return "<form action='$action' method='$method'> $content </form>";
+}
+function input($name, $type="text", $value="") {
+	return "<input type='$type' name='$name' value='$value'></input>";
+}
  ?>

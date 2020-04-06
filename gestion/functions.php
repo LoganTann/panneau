@@ -22,7 +22,8 @@ catch(Exception $e) { die('Erreur : '.$e->getMessage()); }
 // FONCTIONS :
 
 function abortIfNotAdmin() {
-	if ($isNotAdmin) {
+	// Pas possible d'utiliser $isNotAdmin pour cause de pb de portée de variable
+	if (empty($_SESSION["admin"])) { 
 		?> <!DOCTYPE html> <html> <head> <meta charset="utf-8"> <title>Forbidden access</title> </head> <body>
 
 		<h2>Forbidden Access</h2>

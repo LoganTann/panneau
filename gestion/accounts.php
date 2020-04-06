@@ -58,12 +58,7 @@ abortIfNotAdmin();
 			echo traitement();
 			 ?>
 	 	</div>
-
-    <p>
-    <a class="btn_register" href="register.php">Sign in</a>
-    </p>
-
-		<form action="accounts.php" method="post"> <table><tbody><tr>
+		<form action="?" method="post"> <table><tbody><tr>
 			<td>
 				<input type="text" name="name" value="NOM prénom">
 				<br><br>

@@ -15,16 +15,16 @@
  	   </div>
      <div id="ListeFichier">
     		<?php
-    		session_start();
-    		if (isset($_SESSION['isadmin'])){
-    			$liste_fichiers = glob("../articles/*.html");
-    			$i = 1;
-    			foreach ($liste_fichiers as $value) {
-    				echo "<a class=\"fichier\" href='news.php?article=$value'>Article $i</a><br>";
-    				$i++;
-    			}
-    	  }
-    		?>
+			session_start();
+			if (isset($_SESSION['isadmin'])){
+				$liste_fichiers = glob("../articles/*.html");
+				$i = 1;
+				foreach ($liste_fichiers as $value) {
+					echo "<a class=\"fichier\" href='news.php?article=$value'>Article $i</a><br>";
+					$i++;
+				}
+		  }
+			?>
      </div>
      <a href="<?php echo 'news.php?article=../articles/art'.$i++.'.html'; ?>"><input method="post" class="btn_1" type="button" value="Nouvel Article" name="New"></a>
  	</body>

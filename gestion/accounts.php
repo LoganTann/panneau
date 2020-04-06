@@ -23,34 +23,34 @@ abortIfNotAdmin();
 			$fileToEdit = "art1.html";
 
 			function traitement() {
-				if ( empty($_POST["bouton"]) ) {
+				if (empty($_POST["bouton"])) {
 					return "";
 				}
-				if ( empty($_POST["password"]) ) {
+				if (empty($_POST["password"])) {
 					// Si le password est vide, faire :
 					return "Erreur : pas de mot de passe envoyé. Retournez en arrière !";
 				}
 				if ($_POST["password"] !== "admin") {
 					return "Erreur : mauvais mot de passe";
 				}
-				if ( empty($_POST["name"]) ) {
+				if (empty($_POST["name"])) {
 					// Si le nom est vide, faire :
 					return "Erreur : pas de nom !";
 				}
-				if ( empty($_POST["birthday"]) ) {
+				if (empty($_POST["birthday"])) {
 					// Si l'anniversaire est vide, faire :
 					return "Erreur : Pas de date d'anniversaire valide !";
 				}
 
-				if ( empty($_POST["status"]) ) {
+				if (empty($_POST["status"])) {
 					$status = "Élève";
 				} else {
 					$status = "Professeur";
 				}
 				// tout est okay !!
-				$valeurRetour  = "Nom envoyé : <i>" . $_POST["name"] . "</i>";
-				$valeurRetour .= " Date d'anniv: <i>" . $_POST["birthday"] . "</i>";
-				$valeurRetour .= " Statut : <i>" . $status . "</i>";
+				$valeurRetour = "Nom envoyé : <i>".$_POST["name"]."</i>";
+				$valeurRetour .= " Date d'anniv: <i>".$_POST["birthday"]."</i>";
+				$valeurRetour .= " Statut : <i>".$status."</i>";
 
 				return $valeurRetour;
 			}

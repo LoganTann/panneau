@@ -30,14 +30,14 @@ if (isset($_GET['article'])){
    <body>
 	   <p id="gestionNav">
 		   <a href="index.php">Espace de gestion</a> >
-		   <a href="news.php">Modification de <?php echo $fileToEdit;?>"</a>
+		   <a href="news.php">Modification de <?php echo $fileToEdit; ?>"</a>
 	   </p>
 	   <div id="espaceErreur">
 			<?php
-				echo '<h1>Modification de «'. $fileToEdit .'»</h1>';
-				if ( ! empty($_POST["bouton"]) ) {
+				echo '<h1>Modification de «'.$fileToEdit.'»</h1>';
+				if (!empty($_POST["bouton"])) {
 					// Si on a cliqué sur le bouton
-					if ( empty($_POST["article"]) ) {
+					if (empty($_POST["article"])) {
 						// Si l'article est vide, faire :
 						echo "Erreur : texte vide !";
 					} elseif(!empty($fileToEdit)) {
@@ -58,8 +58,8 @@ if (isset($_GET['article'])){
 				<input type="submit" name="bouton" value="envoyer" id="submitBtn">
 				<textarea name="article" rows="8" cols="80">';
 					$new = file_exists($fileToEdit);
-					if (!empty($fileToEdit && $new == True)){
-						include($fileToEdit);
+					if (!empty($fileToEdit && $new == true)){
+						include $fileToEdit;
 					}
 			echo '</textarea><br>
 			</form>';

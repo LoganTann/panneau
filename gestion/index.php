@@ -7,11 +7,12 @@ function checkConnection($isNotAdmin) {
 	if ($isNotAdmin) {
 		if (empty($_POST["password"])) {
 			return "";
-		} else if ($_POST["password"] != $adminPassword) {
+		} elseif ($_POST["password"] != $adminPassword) {
 			return "wrongPassword";
 		}
 		$_SESSION["admin"] = true;
 	}
+
 	return "ok";
 }
 function printTemplate_Login() {
@@ -25,24 +26,24 @@ function printTemplate_Login() {
 function printTemplate_Index() {
 	echo p("Disponible :");
 	echo ul(
-			a("accounts.php", "Ajouter un compte"),
-			a("liste_fichiers.php", "Modifier la nouvelle")
-		 );
+		a("accounts.php", "Ajouter un compte"),
+		a("liste_fichiers.php", "Modifier la nouvelle")
+	);
 	echo p("Test :");
 	echo ul(
-			a("choose.php", "Gestion des comptes")
-		 );
+		a("choose.php", "Gestion des comptes")
+	);
 	echo p("Indisponible :");
 	echo ul(
-			a("#", "Signaler une absence"),
-			a("#", "Modifier les comptes")
-		 );
+		a("#", "Signaler une absence"),
+		a("#", "Modifier les comptes")
+	);
 	echo p("À faire :");
 	echo ul(
-			"la page gestion compte doit avoir le choix du compte à modifier.",
-			"la page gestion article doit lister les articles diponibles.",
-			"faire la page d'affichage pour des articles multiples."
-		 );
+		"la page gestion compte doit avoir le choix du compte à modifier.",
+		"la page gestion article doit lister les articles diponibles.",
+		"faire la page d'affichage pour des articles multiples."
+	);
 }
 function print_goodTemplate($status) {
 	if ($status == "ok") {
@@ -54,13 +55,13 @@ function print_goodTemplate($status) {
 
 // MAIN CODE =====
 
-$connectionStatus = checkConnection( $isNotAdmin );
+$connectionStatus = checkConnection($isNotAdmin);
 $title = "Merci de s'identifier pour accéder au panneau d'administration";
 $erreur = "";
 
 if ($connectionStatus == "ok") {
 	$title = "Espace administration du panneau";
-} else if ($connectionStatus == "ok") {
+} elseif ($connectionStatus == "ok") {
 	$erreur = "Mot de passe incorrect !!";
 }
 ?>

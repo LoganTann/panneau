@@ -22,6 +22,3 @@ while ($donnees = $reponse->fetch()) {
 	}
 	echo "<br>", ($donnees["is_here"])? "Présent aujd" : "Absent aujd";
 }*/
-
-
-?>

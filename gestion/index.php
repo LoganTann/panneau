@@ -2,7 +2,7 @@
 include 'functions.php';
 
 // THIS FILE'S FUNCTIONS =====
-function checkConnection() {
+function checkConnection($isNotAdmin) {
 	$adminPassword = "LA PATATE";
 	if ($isNotAdmin) {
 		if (empty($_POST["password"])) {
@@ -16,8 +16,10 @@ function checkConnection() {
 }
 function printTemplate_Login() {
 	echo form(
-		input("password"),
-		input("Se connecter", "submit")
+		p("Entrez le mot de passe d'administration : ").
+		input("password", "password").
+		p(br()).
+		input("Connect", "submit", "Cliquez ici pour vous connecter")
 	);
 }
 function printTemplate_Index() {
@@ -52,7 +54,7 @@ function print_goodTemplate($status) {
 
 // MAIN CODE =====
 
-$connectionStatus = checkConnection();
+$connectionStatus = checkConnection( $isNotAdmin );
 $title = "Merci de s'identifier pour accéder au panneau d'administration";
 $erreur = "";
 

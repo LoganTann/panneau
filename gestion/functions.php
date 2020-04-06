@@ -93,7 +93,7 @@ function a($href, $content="") {
 }
 function ul(...$listItems) { // ... = arguments en nombre infini dans une liste
 	$retval = "<ul>";
-	foreach ($item as $listItems) {
+	foreach ($listItems as $item) {
 		$retval .= "<li>$item</li>";
 	}
 	$retval .= "</ul>";
@@ -103,6 +103,6 @@ function form($content, $action = "?", $method="POST") {
 	return "<form action='$action' method='$method'> $content </form>";
 }
 function input($name, $type="text", $value="") {
-	return "<input type='$type' name='$name' value='$value'></input>";
+	return "<input type='$type' name='$name' value='$value' />";
 }
  ?>

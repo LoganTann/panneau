@@ -1,8 +1,13 @@
 <?php
-session_start();
+
+// Espace de modification / création d'articles
+
+include 'functions.php';
+abortIfNotAdmin();
+
 if (isset($_GET['article'])){
-$_SESSION['article'] = $_GET["article"];
-$fileToEdit = $_GET['article'];
+	$_SESSION['article'] = $_GET["article"];
+	$fileToEdit = $_GET['article'];
 } elseif (isset($_SESSION['article'])){
 	$fileToEdit = $_SESSION['article'];
 }else{

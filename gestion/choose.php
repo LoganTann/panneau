@@ -1,3 +1,6 @@
+<?php
+// TODO: Utiliser une arborescence par dossier !! Les noms de fichiers sont pas assez clairs.
+ ?>
 <!DOCTYPE html>
 <html lang="FR-fr" dir="ltr">
   <head>

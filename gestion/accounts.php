@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+// TODO: Fusionner accounts et accounts_admin qui possèdent la même fonction.
+
+include 'functions.php';
+abortIfNotAdmin();
+
+ ?><!DOCTYPE html>
 <html lang="fr" dir="ltr">
    <head>
 	   <meta charset="utf-8">
@@ -52,12 +58,7 @@
 			echo traitement();
 			 ?>
 	 	</div>
-
-    <p>
-    <a class="btn_register" href="register.php">Sign in</a>
-    </p>
-
-		<form action="accounts.php" method="post"> <table><tbody><tr>
+		<form action="?" method="post"> <table><tbody><tr>
 			<td>
 				<input type="text" name="name" value="NOM prénom">
 				<br><br>

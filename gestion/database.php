@@ -1,6 +1,8 @@
 <?php
 
-include("functions.php");
+include 'functions.php';
+abortIfNotAdmin();
+
 //$reponse = $db->query('SELECT * FROM `accounts`');
 
 // récupérer tous les profs absents

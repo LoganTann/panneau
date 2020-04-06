@@ -3,11 +3,37 @@
  * utilitaires automatisant certaines tâches. à importer avec include.
 */
 
+// Création d'une session.
+session_start();
+
+// Détermine si la session actuelle n'est pas connectée en tant qu'admin (automatique)
+$isNotAdmin = empty($_SESSION["admin"]);
+
+// Connection à la base de donnée (automatique)
 try {
-    $db = new PDO('mysql:host=localhost;dbname=panneau;charset=utf8', 'root', "", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+	$dbID = 'root';
+	$dbPassword = '';
+    $db = new PDO('mysql:host=localhost;dbname=panneau;charset=utf8', $dbID, $dbPassword, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 catch(Exception $e) { die('Erreur : '.$e->getMessage()); }
 
+
+
+// FONCTIONS :
+
+function abortIfNotAdmin() {
+	// Pas possible d'utiliser $isNotAdmin pour cause de pb de portée de variable
+	if (empty($_SESSION["admin"])) { 
+		?> <!DOCTYPE html> <html> <head> <meta charset="utf-8"> <title>Forbidden access</title> </head> <body>
+
+		<h2>Forbidden Access</h2>
+		<p>Vous n'avez pas les droits pour accéder à cette page. Merci de <a href='/gestion/'>vous connecter</a>.</p>
+
+		</body> </html> <?php
+		// Quitte le script
+		die();
+	}
+}
 
 function listFilesInsideFolder($pattern = "./") {
 	/*	Retourne la liste de tous les fichiers correspondant à $pattern
@@ -52,4 +78,32 @@ function getAllStudentNames($db) {
 	return $retval;
 }
 
+
+// HTML shortcuts (make better code)
+function p($content) {
+	return "<p> $content </p>";
+}
+function br() {
+	return "<br>";
+}
+function a($href, $content="") {
+	if ($content == "") {
+		$content = $href;
+	}
+	return "<a href='$href'> $content </a>";
+}
+function ul(...$listItems) { // ... = arguments en nombre infini dans une liste
+	$retval = "<ul>";
+	foreach ($listItems as $item) {
+		$retval .= "<li>$item</li>";
+	}
+	$retval .= "</ul>";
+	return $retval;
+}
+function form($content, $action = "?", $method="POST") {
+	return "<form action='$action' method='$method'> $content </form>";
+}
+function input($name, $type="text", $value="") {
+	return "<input type='$type' name='$name' value='$value' />";
+}
  ?>

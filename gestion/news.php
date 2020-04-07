@@ -52,7 +52,7 @@ if (isset($_GET['article'])){
 			 ?>
 		 </div>
 		 <?php
-		 if (isset($_SESSION['isadmin'])){
+		 if ($_SESSION['admin'] == true){
 			 echo '
 			<form action="?" method="post">
 				<input type="submit" name="bouton" value="envoyer" id="submitBtn">

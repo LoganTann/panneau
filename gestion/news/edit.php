@@ -2,7 +2,7 @@
 
 // Espace de modification / création d'articles
 
-include 'functions.php';
+include '../functions.php';
 abortIfNotAdmin();
 
 $title = "Erreur";

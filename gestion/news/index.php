@@ -19,7 +19,7 @@
 		if (empty($_SESSION['admin'])) {
 			echo "<p>Vous n'avez pas les droits requis pour accéder à cette page. <a href='./'>Connectez-vous ici</a></p>";
 		} else {
-			$articlesFileList = glob("../articles/*.html");
+			$articlesFileList = glob("../../articles/*.html");
 			// TODO: Utiliser des noms d'articles plutôt que des numéros.
 			foreach ($articlesFileList as $i => $path) {
 				echo "<a class=\"fichier\" href='news.php?article=$path'>Article ",$i+1,"</a><br>";

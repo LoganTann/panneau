@@ -61,7 +61,7 @@ $erreur = "";
 
 if ($connectionStatus == "ok") {
 	$title = "Espace administration du panneau";
-} elseif ($connectionStatus == "ok") {
+} elseif ($connectionStatus == "wrongPassword") {
 	$erreur = "Mot de passe incorrect !!";
 }
 ?>

@@ -23,10 +23,10 @@
 			// TODO: Utiliser des noms d'articles plutôt que des numéros.
 			// TODO: Utiliser un tableau, c'est + joli
 			foreach ($articlesFileList as $i => $path) {
-				echo "<a class=\"fichier\" href='edit.php?article=$path'>Article ",$i+1,"</a><br>";
+				echo "<a class=\"fichier\" href='edit.php?article=$path'>Article ", $i + 1, "</a><br>";
 			}
 			// TODO: Créer l'article sur cette page :)
-			echo '<a href="edit.php?article=../articles/art',count($articlesFileList)+1,'.html"><input method="post" class="btn_1" type="button" value="Nouvel Article" name="New"></a>';
+			echo '<a href="edit.php?article=../articles/art', count($articlesFileList) + 1, '.html"><input method="post" class="btn_1" type="button" value="Nouvel Article" name="New"></a>';
 		}
 		?>
 	</div>

@@ -1,4 +1,5 @@
 # Panneau
+French only personnal project. We don't take contributions else some reviews/issues.
 ## A\ Le projet
 Projet d'ISN : un panneau d'affichage pour un lycée.
 ### 1) Idée 

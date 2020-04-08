@@ -24,25 +24,16 @@ function printTemplate_Login() {
 	);
 }
 function printTemplate_Index() {
-	echo p("Disponible :");
+	echo p(a("accounts/", "Gestion des comptes :"));
 	echo ul(
-		a("accounts.php", "Ajouter un compte"),
-		a("liste_fichiers.php", "Modifier la nouvelle")
+		"Liste des comptes (indisponible)",
+		a("accounts/create.php", "Ajouter un compte")
 	);
-	echo p("Test :");
+
+	echo p(a("news/", "Gestion des articles :"));
 	echo ul(
-		a("choose.php", "Gestion des comptes")
-	);
-	echo p("Indisponible :");
-	echo ul(
-		a("#", "Signaler une absence"),
-		a("#", "Modifier les comptes")
-	);
-	echo p("À faire :");
-	echo ul(
-		"la page gestion compte doit avoir le choix du compte à modifier.",
-		"la page gestion article doit lister les articles diponibles.",
-		"faire la page d'affichage pour des articles multiples."
+		a("news/", "Liste des articles"),
+		"Ajouter un article (indisponible...)"
 	);
 }
 function print_goodTemplate($status) {
@@ -61,7 +52,7 @@ $erreur = "";
 
 if ($connectionStatus == "ok") {
 	$title = "Espace administration du panneau";
-} elseif ($connectionStatus == "ok") {
+} elseif ($connectionStatus == "wrongPassword") {
 	$erreur = "Mot de passe incorrect !!";
 }
 ?>

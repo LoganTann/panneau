@@ -23,7 +23,13 @@ Et les pull requests : https://github.com/LoganTann/panneau/pulls
 * Programmation sous php 7 avec wampp/lampp. Connection à la database `panneau`. Identifiants par défauts `root`, `[password vide]`.
 * PHP doit avoir les droits de lecture/écriture dans le dossier `/panneau/articles/`
 * Cloner le repository dans la racine de l'host, tel que le fichier `index.php` de la racine du repository soit présent sur le serveur à l'addresse `[localhost]/panneau/index.html`
+
 ### 2) Démarrage
 L'écran du hall doit démarrer sur `/panneau/`
 
 L'espace administration est sur `/panneau/gestion/`
+
+### 3) Terms of service
+Nous avons choisi la license open-source restricive GNU/GPL car ce projet constitue un devoir noté au baccalauréat pour l'option Informatique et Sciences du Numérique.
+
+Afin d'éviter d'éventuels vols de code complets, si vous utilisez le notre, vous avez l'obligation de mettre à disposition en ligne (sur github en tant que fork par exemple) vos modifications, ainsi qu'une mention de notre projet et de nos contributeurs. L'addresse du repository github nous suffit.

@@ -23,7 +23,7 @@ Et les pull requests : https://github.com/LoganTann/panneau/pulls
 * Programmation sous php 7 avec wampp/lampp. Connection à la database `panneau`. Identifiants par défauts `root`, `[password vide]`.
 * PHP doit avoir les droits de lecture/écriture dans le dossier `/panneau/articles/`
 * Cloner le repository dans la racine de l'host, tel que le fichier `index.php` de la racine du repository soit présent sur le serveur à l'addresse `[localhost]/panneau/index.html`
-### 2) Fonctionnement
+### 2) Démarrage
 L'écran du hall doit démarrer sur `/panneau/`
 
 L'espace administration est sur `/panneau/gestion/`

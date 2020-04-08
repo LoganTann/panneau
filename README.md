@@ -17,7 +17,7 @@ pour le hall du lycée utilisant les technologies web, avec une interface de ges
 ### 3) Progression
 Voir la page des projets du repository : https://github.com/LoganTann/panneau/projects
 
-Et les pull requests : https://github.com/LoganTann/panneau/pulls
+Et les pull requests : https://github.com/LoganTann/panneau/pulls ou graphe des branches : https://github.com/LoganTann/panneau/network
 ## B\ Fonctionnement
 ### 1) Configuration
 * Programmation sous php 7 avec wampp/lampp. Connection à la database `panneau`. Identifiants par défauts `root`, `[password vide]`.

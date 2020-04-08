@@ -60,7 +60,7 @@ function generateContent($fileContent) {
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $title ?></title>
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../style.css">
 	<style>
 	textarea {
 		height: 70vh; /* 70 view (écran) height*/
@@ -70,8 +70,9 @@ function generateContent($fileContent) {
 </head>
 <body>
 	<p id="gestionNav">
-		<a href="index.php">Espace de gestion</a> >
-		<a href="news.php"><?php echo $title; ?></a>
+		<a href="../">Espace de gestion</a> >
+		<a href="./">Liste des articles</a> >
+		<a href="?"><?php echo $title; ?></a>
 	</p>
 	<div id="espaceErreur">
 		<?php

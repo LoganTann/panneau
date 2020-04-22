@@ -7,26 +7,35 @@ function generateContent() {
 	$articlesFileList = glob("../../articles/*.html");
 	template_newsList($articlesFileList);
 	template_createNews($articlesFileList);
+	return 0;
 }
 
 function template_createNews($articlesFileList) {
-	$defaultValue = "art". (count($articlesFileList)+1);
+	$defaultValue = "Information numéro ". (count($articlesFileList)+1);
 
 	echo "<h2>Créer un nouvel article</h2>";
 	echo form(
 			"<label for='articleName'>Nom de l'article</label>"
 			. input("articleName", "text", $defaultValue)
-			. input("submit", "submit", "Créer un nouvel article"),
+			. input("submit", "submit", "Créer un nouvel sarticle"),
 			"create.php"
 		);
+	return 0;
 }
 function template_newsList($articlesFileList) {
+	echo "<h2>Liste des articles à éditer</h2>";
+	if (count($articlesFileList) == 0) {
+		echo "<p><em>Aucun article encore créé...</em></p>";
+		return 1;
+	}
+
 	foreach ($articlesFileList as $i => $path) {
 		// TODO: Utiliser un tableau, c'est + joli
 		// TODO: Meilleure prise en charge des noms
 		$name = $path;
 		echo "<a class=\"fichier\" href='edit.php?article=$path'>$name</a><br>";
 	}
+	return 0;
 }
 
  ?>
@@ -46,7 +55,7 @@ function template_newsList($articlesFileList) {
 		<h1>Liste des articles à éditer</h1>
 	</div>
 	<div id="ListeFichier">
-		<?php echo generateContent(); ?>
+		<?php generateContent(); ?>
 	</div>
 </body>
 </html>

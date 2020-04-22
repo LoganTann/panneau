@@ -1,3 +1,35 @@
+<?php
+include '../functions.php';
+
+abortIfNotAdmin();
+
+function generateContent() {
+	$articlesFileList = glob("../../articles/*.html");
+	template_newsList($articlesFileList);
+	template_createNews($articlesFileList);
+}
+
+function template_createNews($articlesFileList) {
+	$defaultValue = "art". (count($articlesFileList)+1);
+
+	echo "<h2>Créer un nouvel article</h2>";
+	echo form(
+			"<label for='articleName'>Nom de l'article</label>"
+			. input("articleName", "text", $defaultValue)
+			. input("submit", "submit", "Créer un nouvel article"),
+			"create.php"
+		);
+}
+function template_newsList($articlesFileList) {
+	foreach ($articlesFileList as $i => $path) {
+		// TODO: Utiliser un tableau, c'est + joli
+		// TODO: Meilleure prise en charge des noms
+		$name = $path;
+		echo "<a class=\"fichier\" href='edit.php?article=$path'>$name</a><br>";
+	}
+}
+
+ ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -14,21 +46,7 @@
 		<h1>Liste des articles à éditer</h1>
 	</div>
 	<div id="ListeFichier">
-		<?php
-		session_start();
-		if (empty($_SESSION['admin'])) {
-			echo "<p>Vous n'avez pas les droits requis pour accéder à cette page. <a href='./'>Connectez-vous ici</a></p>";
-		} else {
-			$articlesFileList = glob("../../articles/*.html");
-			// TODO: Utiliser des noms d'articles plutôt que des numéros.
-			// TODO: Utiliser un tableau, c'est + joli
-			foreach ($articlesFileList as $i => $path) {
-				echo "<a class=\"fichier\" href='edit.php?article=$path'>Article ", $i + 1, "</a><br>";
-			}
-			// TODO: Créer l'article sur cette page :)
-			echo '<a href="edit.php?article=../articles/art', count($articlesFileList) + 1, '.html"><input method="post" class="btn_1" type="button" value="Nouvel Article" name="New"></a>';
-		}
-		?>
+		<?php echo generateContent(); ?>
 	</div>
 </body>
 </html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ooo:color-table xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ooo="http://openoffice.org/2004/office">
+  <draw:color draw:name="Green 0" draw:color="#55bbab"/>
+  <draw:color draw:name="Green 1" draw:color="#7bc5b8"/>
+  <draw:color draw:name="Green 2" draw:color="#a0d2c9"/>
+
+  <draw:color draw:name="Blue 0" draw:color="#1f2c4c"/>
+  <draw:color draw:name="Blue 1" draw:color="#4b5164"/>
+  <draw:color draw:name="Blue 2" draw:color="#7d808a"/>
+
+  <draw:color draw:name="Grey 1" draw:color="#4b5164"/>
+  <draw:color draw:name="Grey 2" draw:color="#edeef0"/>
+  <draw:color draw:name="Grey 3" draw:color="#f3f4f5"/>
+</ooo:color-table>

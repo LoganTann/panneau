@@ -25,7 +25,7 @@ function abortIfNotAdmin() {
 		?> <!DOCTYPE html> <html> <head> <meta charset="utf-8"> <title>Forbidden access</title> </head> <body>
 
 		<h2>Forbidden Access</h2>
-		<p>Vous n'avez pas les droits pour accéder à cette page. Merci de <a href='/gestion/'>vous connecter</a>.</p>
+		<p>Vous n'avez pas les droits pour accéder à cette page. Merci de <a href='panneau/gestion/'>vous connecter</a>.</p>
 
 		</body> </html> <?php
 		// Quitte le script

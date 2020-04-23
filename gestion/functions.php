@@ -41,6 +41,7 @@ function listFilesInsideFolder($pattern = "./") {
 	return $retval;
 }
 
+// Database functions
 function getDatabaseInstance() {
 	/* Permet la connection de la base de donnée. Retourne l'objet permettant
 	   de faire des manipulations sur la base de données*/
@@ -48,7 +49,6 @@ function getDatabaseInstance() {
 
 	return $db;
 }
-
 function editInfos($db, $name, $birthday, $is_student, $is_here, $id = '-1') {
 	/* Modifie les informations de $id : nom, anniv, est étudiant, est présent
 	Si ID = -1 (défaut) c'est qu'on crée un nouvel étudiant*/
@@ -79,6 +79,24 @@ function getAllStudentNames($db) {
 	$retval = ['1' => "Logan", "2" => "Camille", "3" => "Romain", "4" => "Le prof"];
 
 	return $retval;
+}
+
+// News manager functions
+
+function extractArticleIdAndNames($path) {
+	// explication du regex :
+	// ../../articles/ [obtenir le chiffre] # [obtenir la string] . html
+	$regex_pattern_full  = '~..\\/..\\/articles\\/';
+	$regex_pattern_full .= '(\\d+)'; // [obtenir un chiffre]
+	$regex_pattern_full .= '#';
+	$regex_pattern_full .= '([^.]+)'; // [obtenir une chaîne de caractères]
+	$regex_pattern_full .= '.html~';
+
+	if (preg_match($regex_pattern_full, $path, $matches)) {
+		return array($matches[1], $matches[2]);
+	} else {
+		return array(0,"*invalid*");
+	}
 }
 
 // HTML shortcuts (make better code)

@@ -4,7 +4,9 @@ include '../functions.php';
 abortIfNotAdmin();
 
 function generateContent() {
-	$articlesFileList = glob("../../articles/*.html");
+	$articlesFileList = glob("../../articles/[[:digit:]]#*.html");
+	natsort($articlesFileList);
+
 	template_newsList($articlesFileList);
 	template_createNews($articlesFileList);
 	return 0;
@@ -31,9 +33,10 @@ function template_newsList($articlesFileList) {
 
 	foreach ($articlesFileList as $i => $path) {
 		// TODO: Utiliser un tableau, c'est + joli
-		// TODO: Meilleure prise en charge des noms
-		$name = $path;
-		echo "<a class=\"fichier\" href='edit.php?article=$path'>$name</a><br>";
+
+		list($article_id, $article_name) = extractArticleIdAndNames($path);
+
+		echo "<a class=\"fichier\" href='edit.php?article=$article_id'>$article_name</a><br>";
 	}
 	return 0;
 }

@@ -3,7 +3,7 @@ include 'functions.php';
 
 // THIS FILE'S FUNCTIONS =====
 function checkConnection($isNotAdmin) {
-	$adminPassword = "LA PATATE";
+	$adminPassword = "LAPATATE";
 	if ($isNotAdmin) {
 		if (empty($_POST["password"])) {
 			return "";

@@ -22,12 +22,12 @@ catch(Exception $e) { die('Erreur : '.$e->getMessage()); }
 function abortIfNotAdmin() {
 	// Pas possible d'utiliser $isNotAdmin pour cause de pb de portée de variable
 	if (empty($_SESSION["admin"])) {
-		?> <!DOCTYPE html> <html> <head> <meta charset="utf-8"> <title>Forbidden access</title> </head> <body>
+		echo '<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <title>Forbidden access</title> </head> <body>';
 
-		<h2>Forbidden Access</h2>
-		<p>Vous n'avez pas les droits pour accéder à cette page. Merci de <a href='panneau/gestion/'>vous connecter</a>.</p>
+		echo `<h2>Forbidden Access</h2>`;
+		echo `<p>Vous n'avez pas les droits pour accéder à cette page. Merci de <a href='/panneau/gestion/'>vous connecter</a>.</p>`;
 
-		</body> </html> <?php
+		echo `</body> </html>`;
 		// Quitte le script
 		die();
 	}
@@ -98,6 +98,22 @@ function extractArticleIdAndNames($path) {
 		return array(0,"*invalid*");
 	}
 }
+function getArticleFilenameById($id){
+	$id_matches = glob("../../articles/$id#*.html");
+	if (!empty($id_matches[0])) {
+		return $id_matches[0];
+	} else {
+		return false;
+	}
+}
+function isNotEmpty(&$var) {
+	// fait !empty() mais exclus la valeur 0
+	if (empty($var)) {
+		return $var==='0';
+	} else {
+		return true;
+	}
+}
 
 // HTML shortcuts (make better code)
 function p($content) {
@@ -128,4 +144,3 @@ function form($content, $action = "?", $method = "POST") {
 function input($name, $type = "text", $value = "") {
 	return "<input type='$type' name='$name' value='$value' />";
 }
- ?>

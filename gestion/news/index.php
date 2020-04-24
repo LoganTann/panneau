@@ -36,7 +36,7 @@ function template_newsList($articlesFileList) {
 
 		list($article_id, $article_name) = extractArticleIdAndNames($path);
 
-		echo "<a class=\"fichier\" href='edit.php?article=$article_id'>$article_name</a><br>";
+		echo "<a class=\"fichier\" href='edit.php?articleId=$article_id'>$article_name</a><br>";
 	}
 	return 0;
 }

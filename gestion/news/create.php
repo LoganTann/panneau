@@ -13,15 +13,21 @@ function main() {
 	Il est possible d'écrire en HTML.
 	Les sauts de lignes sont automatiquement ajoutés par l'éditeur.
 	";
-	if (new_id > 3) {
+
+	if ($new_id > 3) {
 		die("Erreur : vous ne pouvez pas créer au delà de 4 articles. Supprimez-en.");
 	}
 	if (in_array($new_filename, $articlesFileList)) {
 		die("Erreur : une erreur inattendue est survenue : le nouveau fichier que vous tentez d'écrire existe déjà.");
-	} else {
-		file_put_contents($new_filename, $new_articleContent);
-		$_SESSION['article'] = $new_articleName;
+	}
+
+	if (file_put_contents($new_filename, $new_articleContent)){
+		// Utiliser une string plutôt qu'un chiffre à cause de la vérification isNotEmpty();
+		$_SESSION['articleId'] = "$new_id";
+		
 		header('location: edit.php');
+	} else {
+		echo "Erreur : impossible d'écrire dans le fichier $new_filename. Est-ce un problème de permission de fichiers en Read-Write?";
 	}
 }
 

@@ -19,7 +19,6 @@ if ($set_new_id_using_GET){
 	exit;
 }
 
-
 // récupère le fichier à éditer
 $got_an_id = isNotEmpty($_SESSION['articleId']);
 if ($got_an_id){

@@ -1,10 +1,11 @@
 <?php
+
 include '../functions.php';
 
 function main() {
 	$articlesFileList = glob("../../articles/*.html");
 
-	$new_id = count( $articlesFileList );
+	$new_id = count($articlesFileList);
 	$new_articleName = $_POST["articleName"];
 	$new_basename = $new_id."#".$new_articleName;
 	$new_filename = "../../articles/$new_basename.html";
@@ -24,7 +25,7 @@ function main() {
 	if (file_put_contents($new_filename, $new_articleContent)){
 		// Utiliser une string plutôt qu'un chiffre à cause de la vérification isNotEmpty();
 		$_SESSION['articleId'] = "$new_id";
-		
+
 		header('location: edit.php');
 	} else {
 		echo "Erreur : impossible d'écrire dans le fichier $new_filename. Est-ce un problème de permission de fichiers en Read-Write?";
@@ -36,4 +37,3 @@ if (!empty($_POST["articleName"])) {
 } else {
 	die("Nom spécifié incorrect ! <a href='./'>retourner en arrière</a>");
 }
- ?>

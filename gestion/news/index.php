@@ -9,25 +9,28 @@ function generateContent() {
 
 	template_newsList($articlesFileList);
 	template_createNews($articlesFileList);
+
 	return 0;
 }
 
 function template_createNews($articlesFileList) {
-	$defaultValue = "Information numéro ". (count($articlesFileList)+1);
+	$defaultValue = "Information numéro ".(count($articlesFileList) + 1);
 
 	echo "<h2>Créer un nouvel article</h2>";
 	echo form(
-			"<label for='articleName'>Nom de l'article</label>"
-			. input("articleName", "text", $defaultValue)
-			. input("submit", "submit", "Créer un nouvel sarticle"),
-			"create.php"
-		);
+		"<label for='articleName'>Nom de l'article</label>"
+			.input("articleName", "text", $defaultValue)
+			.input("submit", "submit", "Créer un nouvel sarticle"),
+		"create.php"
+	);
+
 	return 0;
 }
 function template_newsList($articlesFileList) {
 	echo "<h2>Liste des articles à éditer</h2>";
 	if (count($articlesFileList) == 0) {
 		echo "<p><em>Aucun article encore créé...</em></p>";
+
 		return 1;
 	}
 
@@ -38,6 +41,7 @@ function template_newsList($articlesFileList) {
 
 		echo "<a class=\"fichier\" href='edit.php?articleId=$article_id'>$article_name</a><br>";
 	}
+
 	return 0;
 }
 

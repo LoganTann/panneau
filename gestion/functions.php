@@ -86,19 +86,19 @@ function getAllStudentNames($db) {
 function extractArticleIdAndNames($path) {
 	// explication du regex :
 	// ../../articles/ [obtenir le chiffre] # [obtenir la string] . html
-	$regex_pattern_full  = '~..\\/..\\/articles\\/';
+	$regex_pattern_full = '~..\\/..\\/articles\\/';
 	$regex_pattern_full .= '(\\d+)'; // [obtenir un chiffre]
 	$regex_pattern_full .= '#';
 	$regex_pattern_full .= '([^.]+)'; // [obtenir une chaîne de caractères]
 	$regex_pattern_full .= '.html~';
 
 	if (preg_match($regex_pattern_full, $path, $matches)) {
-		return array($matches[1], $matches[2]);
+		return [$matches[1], $matches[2]];
 	} else {
-		return array(0,"*invalid*");
+		return [0, "*invalid*"];
 	}
 }
-function getArticleFilenameById($id){
+function getArticleFilenameById($id) {
 	$id_matches = glob("../../articles/$id#*.html");
 	if (!empty($id_matches[0])) {
 		return $id_matches[0];
@@ -109,7 +109,7 @@ function getArticleFilenameById($id){
 function isNotEmpty(&$var) {
 	// fait !empty() mais exclus la valeur 0
 	if (empty($var)) {
-		return $var==='0';
+		return $var === '0';
 	} else {
 		return true;
 	}

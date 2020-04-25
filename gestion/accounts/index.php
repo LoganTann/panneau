@@ -10,7 +10,7 @@
  </head>
  <body>
 	 <p id="gestionNav">
-		 <a href="../">Espace de gestion</a> >
+		 <a href="../">Espace administration du panneau</a> >
 		 <a href="?">Gestion des comptes</a>
 	 </p>
 	 <div id="espaceErreur">

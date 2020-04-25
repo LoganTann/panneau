@@ -72,13 +72,28 @@ function getInfos($db, $id) {
 
 	return $reponse->fetch();
 }
-function getAllStudentNames($db) {
+function getAllAccountsNames($db) {
 	/*	Renvoie un tableau associatif qui contient en clé l'id de la personne et
 		en contenu le nom de la personne.
 	*/
-	$retval = ['1' => "Logan", "2" => "Camille", "3" => "Romain", "4" => "Le prof"];
+	$reponse = $db->query('SELECT card_id, name FROM `accounts`');
+	?>
+		<ul>
+			ID, Nom :
+		</ul>
+			<?php while ($donnees = $reponse->fetch()) { ?>
+		<ul>
+			<li> #<?php echo $donnees['card_id']; ?>
+			 <?php echo $donnees['name']; ?> </li>
+		</ul>
+		<?php
+	}
+$reponse->closeCursor();
 
-	return $retval;
+
+/*	$retval = ['1' => "Logan", "2" => "Camille", "3" => "Romain", "4" => "Le prof"];
+
+	return $retval; */
 }
 
 // HTML shortcuts (make better code)

@@ -33,22 +33,6 @@ function abortIfNotAdmin() {
 	}
 }
 
-function listFilesInsideFolder($pattern = "./") {
-	/*	Retourne la liste de tous les fichiers correspondant à $pattern
-		utilisable pour afficher la liste des articles disponibles */
-	$retval = ["art1", "art2"];
-
-	return $retval;
-}
-
-// Database functions
-function getDatabaseInstance() {
-	/* Permet la connection de la base de donnée. Retourne l'objet permettant
-	   de faire des manipulations sur la base de données*/
-	$db = function ($arg) {return "Appel de la fonction $arg dans la base de données"; };
-
-	return $db;
-}
 function editInfos($db, $name, $birthday, $is_student, $is_here, $id = '-1') {
 	/* Modifie les informations de $id : nom, anniv, est étudiant, est présent
 	Si ID = -1 (défaut) c'est qu'on crée un nouvel étudiant*/
@@ -98,8 +82,8 @@ function extractArticleIdAndNames($path) {
 		return [0, "*invalid*"];
 	}
 }
-function getArticleFilenameById($id) {
-	$id_matches = glob("../../articles/$id#*.html");
+function getArticleFilenameById($id, $rootPath = ".") {
+	$id_matches = glob("$rootPath/articles/$id#*.html");
 	if (!empty($id_matches[0])) {
 		return $id_matches[0];
 	} else {

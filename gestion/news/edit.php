@@ -23,7 +23,7 @@ if ($set_new_id_using_GET){
 $got_an_id = isNotEmpty($_SESSION['articleId']);
 if ($got_an_id){
 	$article_id = $_SESSION['articleId'];
-	$fileToEdit = getArticleFilenameById($article_id);
+	$fileToEdit = getArticleFilenameById($article_id, "../..");
 } else {
 	$errors = "Erreur : L'article que vous tentez d'éditer n'existe pas, ou plus, ou alors aucun article à éditer n'a été spécifié.<br>";
 	$fileToEdit = false;

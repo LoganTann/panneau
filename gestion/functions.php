@@ -78,8 +78,7 @@ function getAllAccountsNames($db) {
 	$reponse = $db->query('SELECT card_id, name FROM `accounts`');
 
  		while ($donnees = $reponse->fetch()) {
-			$retval[$donnees['card_id']] = $donnees['name']; ?>
-			<?php
+			$retval[$donnees['card_id']] = $donnees['name']; 
 	}
 	$reponse->closeCursor();
 	print_r($retval);

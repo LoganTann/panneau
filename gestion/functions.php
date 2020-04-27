@@ -74,26 +74,18 @@ function getInfos($db, $id) {
 }
 function getAllAccountsNames($db) {
 	/*	Renvoie un tableau associatif qui contient en clé l'id de la personne et
-		en contenu le nom de la personne.
-	*/
+		en contenu le nom de la personne.*/
 	$reponse = $db->query('SELECT card_id, name FROM `accounts`');
-	?>
-		<ul>
-			ID, Nom :
-		</ul>
-			<?php while ($donnees = $reponse->fetch()) { ?>
-		<ul>
-			<li> #<?php echo $donnees['card_id']; ?>
-			 <?php echo $donnees['name']; ?> </li>
-		</ul>
-		<?php
+
+ 		while ($donnees = $reponse->fetch()) {
+			$retval[$donnees['card_id']] = $donnees['name']; ?>
+			<?php
 	}
-$reponse->closeCursor();
+	$reponse->closeCursor();
+	print_r($retval);
 
 
-/*	$retval = ['1' => "Logan", "2" => "Camille", "3" => "Romain", "4" => "Le prof"];
-
-	return $retval; */
+/*	$retval = ['1' => "Logan", "2" => "Camille", "3" => "Romain", "4" => "Le prof"]; */
 }
 
 // HTML shortcuts (make better code)

@@ -77,14 +77,14 @@ function getAllAccountsNames($db) {
 		en contenu le nom de la personne.*/
 	$reponse = $db->query('SELECT card_id, name FROM `accounts`');
 
- 		while ($donnees = $reponse->fetch()) {
-			$retval[$donnees['card_id']] = $donnees['name']; 
+	while ($account = $reponse->fetch()) {
+		$account_id = $account['card_id'];
+		$retval[$account_id] = $account['name'];
 	}
+
 	$reponse->closeCursor();
-	print_r($retval);
 
-
-/*	$retval = ['1' => "Logan", "2" => "Camille", "3" => "Romain", "4" => "Le prof"]; */
+	return $retval;
 }
 
 // HTML shortcuts (make better code)

@@ -17,7 +17,11 @@
       <h1>Liste des comptes</h1>
     </div>
     <?php
-      getAllAccountsNames($db);
+      $accountsList = getAllAccountsNames($db);
+
+	  foreach ($accountsList as $account_id => $account_name) {
+	  	echo "identifiant : $account_id, nom : $account_name  <br>";
+	  }
      ?>
   </body>
 </html>

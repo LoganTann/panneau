@@ -1,12 +1,8 @@
 <?php
-// TODO: Fusionner accounts et accounts_admin qui possèdent la même fonction.
 require '../functions.php';
 abortIfNotAdmin();
 
-function traitement() {
-	$dbID = 'root';
-	$dbPassword = '';
-	$db = new PDO('mysql:host=localhost;dbname=panneau;charset=utf8', $dbID, $dbPassword, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+function traitement($db) {
 	if (empty($_POST["bouton"])) {
 		return "";
 	}
@@ -36,7 +32,7 @@ function traitement() {
 		$isStudent = 0;
 	}
 
-	editInfos($db, $name, $birthday, $isStudent, 1);
+	createAccount($db, $name, $birthday, $isStudent);
 
 	return $valeurRetour;
 }
@@ -56,7 +52,7 @@ function traitement() {
 	</p>
 	<div id="espaceErreur">
 		<h1>Formulaire de création de comptes</h1>
-		<?php echo traitement(); ?>
+		<?php echo traitement($db); ?>
 	</div>
 	<form action="?" method="post">
 		<table>

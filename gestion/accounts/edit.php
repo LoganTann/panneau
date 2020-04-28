@@ -39,11 +39,14 @@ function traitement($db) {
 	return $valeurRetour;
 }
 
-function template_editForm($db) {
+function template_editForm($db, $name) {
+	// TODO : le $name ne fonctionne que avec le code censé être supprimé.
+	// Faire la chose de manière indépendante.
 	  $cardid = $_GET['card_id'];
 	  $reqbirth = $db->query("SELECT birthday FROM accounts WHERE card_id=$cardid");
 	  $retour = $reqbirth->fetch();
 	  $birthday = $retour[0];
+	  // TODO: aucune valeur par défaut pour le status élève/prof.
 	  echo '<form action="" method="post">
 		<table>
 		  <tbody>
@@ -107,7 +110,7 @@ function template_editForm($db) {
 	<div>
 		<?php
 		if (isset($_GET['card_id'])) {
-			template_editForm($db);
+			template_editForm($db, $name);
 		}
 		?>
 	</div>

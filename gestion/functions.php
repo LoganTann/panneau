@@ -49,23 +49,29 @@ function getDatabaseInstance() {
 	return $db;
 }
 
-function editInfos($db, $name, $birthday, $is_student, $is_here, $id = '-1') {
-	/* Modifie les informations de $id : nom, anniv, est étudiant, est présent
-	Si ID = -1 (défaut) c'est qu'on crée un nouvel étudiant*/
-	if ($id == "-1") {
-		$reponse = $db->query("
-			INSERT INTO `accounts` (`card_id`, `name`, `birthday`, `is_student`, `is_here`)
-							VALUES (NULL, '$name', '$birthday', '$is_student', '$is_here')");
-	} else {
-		$reponse = $db->query("
-		UPDATE `accounts` SET name ='$name', birthday = '$birthday', is_student = '$is_student', is_here = '$is_here'
-			WHERE card_id = '$id'");
-	}
+function editInfos($db, $name, $birthday, $is_student, $is_here, $id) {
+	/* Modifie les informations de $id : nom, anniv, est étudiant, est présent*/
+
+	// TODO : vérifier si le compte existe bien avec la fonction de romain
+
+	$reponse = $db->query("
+		UPDATE `accounts` SET 	name ='$name', birthday = '$birthday',
+								is_student = '$is_student', is_here = '$is_here'
+		WHERE card_id = '$id'");
 
 	$retval = "FAIT !";
 
 	return $retval;
 }
+function createAccount($db, $name, $birthday, $is_student, $is_here=1) {
+	$reponse = $db->query("
+		INSERT INTO `accounts`
+			(`card_id`, `name`, `birthday`, `is_student`, `is_here`)
+		VALUES (NULL, '$name', '$birthday', '$is_student', '$is_here')");
+	$retval = "FAIT !";
+	return $retval;
+}
+
 function getInfos($db, $id) {
 	/* Renvoie sous forme de liste les informations de $id*/
 	$reponse = $db->query("SELECT * FROM `accounts` WHERE card_id=$id");

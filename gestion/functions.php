@@ -51,17 +51,18 @@ function getDatabaseInstance() {
 
 function editInfos($db, $name, $birthday, $is_student, $is_here, $id) {
 	/* Modifie les informations de $id : nom, anniv, est étudiant, est présent*/
+	$accountsList = getAllAccountsNames($db);
 
-	// TODO : vérifier si le compte existe bien avec la fonction de romain
-
-	$reponse = $db->query("
-		UPDATE `accounts` SET 	name ='$name', birthday = '$birthday',
-								is_student = '$is_student', is_here = '$is_here'
-		WHERE card_id = '$id'");
-
-	$retval = "FAIT !";
-
-	return $retval;
+	if (! empty($accountsList[$id])) {
+		$reponse = $db->query("
+			UPDATE `accounts`
+			SET name ='$name', birthday = '$birthday',
+				is_student = '$is_student', is_here = '$is_here'
+			WHERE card_id = '$id'");
+		return 0;
+	} else {
+		return 1;
+	}
 }
 function createAccount($db, $name, $birthday, $is_student, $is_here=1) {
 	$reponse = $db->query("

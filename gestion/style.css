@@ -59,38 +59,8 @@ a {
 #gestionNav a:last-child {
 	font-weight: bold;
 }
-.btn_l {
-	background-color: #EEE;
-	text-decoration: none;
-	padding: 30px;
-	border: 1px solid #AAA;
-	border-radius: 50px;
-	margin-left: 15%;
-	transition: all 0.5s;
-}
-.btn_l:hover{
-	background: #33F;
-	color: white;
-	border: 1px solid transparent;
-}
-.btn_r {
-	background-color: #EEE;
-	text-decoration: none;
-	padding: 30px;
-	border: 1px solid #AAA;
-	border-radius: 50px;
-	margin-left: 25%;
-	transition: all 0.5s;
-}
-.btn_r:hover{
-	background: #33F;
-	color: white;
-	border: 1px solid transparent;
-}
-.mid {
-	margin-top: 15%;
-}
 .btn_register {
+	display: inline-block;
 	background-color: #EEE;
 	padding: 15px;
 	border: 1px solid #AAA;
@@ -101,7 +71,4 @@ a {
 	background: #33F;
 	color: white;
 	border: 1px solid transparent;
-}
-.fichier{
-	text-align: center;
 }

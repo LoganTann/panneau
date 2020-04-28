@@ -47,7 +47,7 @@ function traitement($db) {
 <body>
 	<p id="gestionNav">
 		<a href="../">Espace de gestion</a> >
-		<a href="./">Gestion des comptes</a> >
+		<a href="./">Liste des comptes</a> >
 		<a href="?">Formulaire de création de comptes</a>
 	</p>
 	<div id="espaceErreur">

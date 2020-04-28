@@ -1,10 +1,8 @@
 <?php
-// TODO: Fusionner accounts et accounts_admin qui possèdent la même fonction.
-
-include '../functions.php';
+require '../functions.php';
 abortIfNotAdmin();
 
-function traitement() {
+function traitement($db) {
 	if (empty($_POST["bouton"])) {
 		return "";
 	}
@@ -22,11 +20,19 @@ function traitement() {
 	} else {
 		$status = "Professeur";
 	}
-	// tout est okay !!
-	// TODO: Adapter avec les bases de données
 	$valeurRetour = "Nom envoyé : <i>".$_POST["name"]."</i>";
 	$valeurRetour .= " Date d'anniv: <i>".$_POST["birthday"]."</i>";
 	$valeurRetour .= " Statut : <i>".$status."</i>";
+
+	$birthday = $_POST['birthday'];
+	$name = $_POST['name'];
+	if($status == "Élève"){
+		$isStudent = 1;
+	}else{
+		$isStudent = 0;
+	}
+
+	createAccount($db, $name, $birthday, $isStudent);
 
 	return $valeurRetour;
 }
@@ -46,22 +52,28 @@ function traitement() {
 	</p>
 	<div id="espaceErreur">
 		<h1>Formulaire de création de comptes</h1>
-		<?php echo traitement(); ?>
+		<?php echo traitement($db); ?>
 	</div>
-	<form action="?" method="post"> <table><tbody><tr>
-		<td>
-			<input type="text" name="name" value="NOM prénom">
-			<br><br>
-			<input type="date" name="birthday" value="2000-01-01">
-			<br><br>
-			<select name="status">
-				<option value="">Élève</option>
-				<option value="true">Professeur</option>
-			</select>
-		</td>
-		<td id="formValidation">
-			<input type="submit" name="bouton" value="Créer le compte   " id="submitBtn">
-		</td>
-	</tr></tbody></table> </form>
+	<form action="?" method="post">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<input type="text" name="name" placeholder="NOM prénom">
+						<br><br>
+						<input type="date" name="birthday" value="2000-01-01">
+						<br><br>
+						<select name="status">
+							<option value="">Élève</option>
+							<option value="true">Professeur</option>
+						</select>
+					</td>
+					<td id="formValidation">
+						<input type="submit" name="bouton" value="Créer le compte   " id="submitBtn">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
 </body>
 </html>

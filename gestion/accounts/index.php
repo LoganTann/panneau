@@ -10,7 +10,7 @@
  </head>
  <body>
 	 <p id="gestionNav">
-		 <a href="../">Espace de gestion</a> >
+		 <a href="../">Espace administration du panneau</a> >
 		 <a href="?">Gestion des comptes</a>
 	 </p>
 	 <div id="espaceErreur">
@@ -18,7 +18,7 @@
 	 </div>
 	 <p class="mid">
 		 <a class="btn_l" href="create.php">Pour créer un compte</a>
-		 <a class="btn_r" href="#">Pour modifier un compte</a>
+		 <a class="btn_r" href="edit.php">Pour modifier un compte</a>
 		 <!-- mettre le lien sur la page qui modifie -->
 	 </p>
  </body>

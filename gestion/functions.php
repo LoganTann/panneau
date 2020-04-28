@@ -58,8 +58,8 @@ function editInfos($db, $name, $birthday, $is_student, $is_here, $id = '-1') {
 							VALUES (NULL, '$name', '$birthday', '$is_student', '$is_here')");
 	} else {
 		$reponse = $db->query("
-			UPDATE `accounts` SET name = $name, birthday = $birthday, is_student = $is_student, is_here = $is_here
-			WHERE card_id = $card_id");
+		UPDATE `accounts` SET name ='$name', birthday = '$birthday', is_student = '$is_student', is_here = '$is_here'
+			WHERE card_id = '$id'");
 	}
 
 	$retval = "FAIT !";

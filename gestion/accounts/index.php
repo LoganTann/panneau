@@ -10,13 +10,15 @@
   </head>
   <body>
     <p id="gestionNav">
-      <a href="../index.php">Espace administration du panneau</a> >
-      <a href="./">Gestion des comptes</a>
+		<a href="../">Espace de gestion</a> >
+		<a href="./">Liste des comptes</a> >
     </p>
     <div id="espaceErreur">
-      <h1>Gestion des comptes</h1>
+    	<h1>Gestion des comptes</h1>
     </div>
+
 	<a class="btn_register" href="create.php">Créer un nouveau compte</a>
+
 	<h3>Modifier un compte : </h3>
     <?php
       $accountsList = getAllAccountsNames($db);

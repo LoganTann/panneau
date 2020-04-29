@@ -28,6 +28,7 @@ function traitement($db) {
 		$status = "Professeur";
 		$isStudent = 0;
 	}
+	$is_here = empty($_POST["isHere"]) ? 0 : 1;
 	$valeurRetour = "Nom envoyé : <i>".$_POST["name"]."</i>";
 	$valeurRetour .= " Date d'anniv: <i>".$_POST["birthday"]."</i>";
 	$valeurRetour .= " Statut : <i>".$status."</i>";
@@ -35,7 +36,7 @@ function traitement($db) {
 	$birthday = $_POST['birthday'];
 	$name = $_POST['name'];
 
-	editInfos($db, $name, $birthday, $isStudent, 1, $cardid);
+	editInfos($db, $name, $birthday, $isStudent, $is_here, $cardid);
 	return $valeurRetour;
 }
 
@@ -47,18 +48,26 @@ function template_editForm($db) {
 	$input_name = input("name","text",$account_infos['name']);
 	$input_bday = input("birthday","date",$account_infos['birthday']);
 	$input_isStudent = '
-	<select name="status">
-	<option value="" >Élève</option>
-	<option value="true" >Professeur</option>
-	</select>';
+		<select name="status">
+		<option value="" >Élève</option>
+		<option value="true" >Professeur</option>
+		</select>';
+	$input_isHere = '<div>
+		<input type="checkbox" name="isHere" value="1">
+		<label for="isHere">Est présent aujourd\'hui</label>
+	</div>';
 
 	if ($account_infos['is_student']) {
+		// Ajoute l'attribut selected à l'option Élève
 		$input_isStudent = str_replace(">É", "selected >É", $input_isStudent);
 	} else {
+		// Ajoute l'attribut selected à l'option Professeur
 		$input_isStudent = str_replace(">P", "selected >P", $input_isStudent);
 	}
-
-	$input_isHere = ''; // TODO : checkbox + backend associé
+	if (!empty($account_infos['is_here'])) {
+		// Ajoute l'attribut checked au checkbox
+		$input_isHere = str_replace("input", "input checked", $input_isHere);
+	}
 
 	echo form("<table> <tbody>
 	  <tr>

@@ -33,6 +33,13 @@ input, select, textarea {
 	margin: auto;
 	display: block;
 }
+input[type="checkbox"] {
+	/*supprime les styles plus haut pour les checkbox*/
+	width: initial;
+	min-height: initial;
+	display: initial;
+	margin-right: 1em;
+}
 a {
 	color: black;
 }

@@ -2,7 +2,6 @@
 require '../functions.php';
 abortIfNotAdmin();
 
-
 function traitement($db) {
 	if (isset($_GET['card_id'])){
 		$cardid = $_GET['card_id'];
@@ -37,6 +36,7 @@ function traitement($db) {
 	$name = $_POST['name'];
 
 	editInfos($db, $name, $birthday, $isStudent, $is_here, $cardid);
+
 	return $valeurRetour;
 }
 
@@ -45,8 +45,8 @@ function template_editForm($db) {
 	$account_query = $db->query("SELECT * FROM accounts WHERE card_id=$cardid");
 	$account_infos = $account_query->fetch();
 
-	$input_name = input("name","text",$account_infos['name']);
-	$input_bday = input("birthday","date",$account_infos['birthday']);
+	$input_name = input("name", "text", $account_infos['name']);
+	$input_bday = input("birthday", "date", $account_infos['birthday']);
 	$input_isStudent = '
 		<select name="status">
 		<option value="" >Élève</option>

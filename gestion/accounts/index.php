@@ -21,13 +21,13 @@
 
 	<h3>Modifier un compte : </h3>
     <?php
-      $accountsList = getAllAccountsNames($db);
+	  $accountsList = getAllAccountsNames($db);
 	  echo "<ul>";
 	  foreach ($accountsList as $account_id => $account_name) {
-	  	echo "<li><a href='edit.php?card_id=$account_id'>$account_name</a></li>";
+		echo "<li><a href='edit.php?card_id=$account_id'>$account_name</a></li>";
 	  }
 	  echo "</ul>";
-     ?>
+	 ?>
 
   </body>
 </html>

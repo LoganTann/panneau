@@ -26,7 +26,7 @@ function printTemplate_Login() {
 function printTemplate_Index() {
 	echo p(a("accounts/", "Gestion des comptes :"));
 	echo ul(
-		"Liste des comptes (indisponible)",
+		a("accounts/", "Liste des comptes"),
 		a("accounts/create.php", "Ajouter un compte")
 	);
 

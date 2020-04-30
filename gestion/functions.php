@@ -33,34 +33,49 @@ function abortIfNotAdmin() {
 	}
 }
 
-function editInfos($db, $name, $birthday, $is_student, $is_here, $id = '-1') {
-	/* Modifie les informations de $id : nom, anniv, est étudiant, est présent
-	Si ID = -1 (défaut) c'est qu'on crée un nouvel étudiant*/
-	if ($id == "-1") {
-		$reponse = $db->query("
-			INSERT INTO `accounts` (`card_id`, `name`, `birthday`, `is_student`, `is_here`)
-							VALUES (NULL, '$name', '$birthday', '$is_student', '$is_here')");
-	} else {
-		$reponse = $db->query("
-			UPDATE `accounts` SET name = $name, birthday = $birthday, is_student = $is_student, is_here = $is_here
-			WHERE card_id = $card_id");
-	}
+function editInfos($db, $name, $birthday, $is_student, $is_here, $id) {
+	/* Modifie les informations de $id : nom, anniv, est étudiant, est présent*/
+	$accountsList = getAllAccountsNames($db);
 
+	if (!empty($accountsList[$id])) {
+		$reponse = $db->query("
+			UPDATE `accounts`
+			SET name ='$name', birthday = '$birthday',
+				is_student = '$is_student', is_here = '$is_here'
+			WHERE card_id = '$id'");
+
+		return 0;
+	} else {
+		return 1;
+	}
+}
+function createAccount($db, $name, $birthday, $is_student, $is_here = 1) {
+	$reponse = $db->query("
+		INSERT INTO `accounts`
+			(`card_id`, `name`, `birthday`, `is_student`, `is_here`)
+		VALUES (NULL, '$name', '$birthday', '$is_student', '$is_here')");
 	$retval = "FAIT !";
 
 	return $retval;
 }
+
 function getInfos($db, $id) {
 	/* Renvoie sous forme de liste les informations de $id*/
 	$reponse = $db->query("SELECT * FROM `accounts` WHERE card_id=$id");
 
 	return $reponse->fetch();
 }
-function getAllStudentNames($db) {
+function getAllAccountsNames($db) {
 	/*	Renvoie un tableau associatif qui contient en clé l'id de la personne et
-		en contenu le nom de la personne.
-	*/
-	$retval = ['1' => "Logan", "2" => "Camille", "3" => "Romain", "4" => "Le prof"];
+		en contenu le nom de la personne.*/
+	$reponse = $db->query('SELECT card_id, name FROM `accounts`');
+
+	while ($account = $reponse->fetch()) {
+		$account_id = $account['card_id'];
+		$retval[$account_id] = $account['name'];
+	}
+
+	$reponse->closeCursor();
 
 	return $retval;
 }

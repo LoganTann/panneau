@@ -1,3 +1,51 @@
+<?php
+include '../functions.php';
+
+abortIfNotAdmin();
+
+function generateContent() {
+	$articlesFileList = glob("../../articles/[[:digit:]]#*.html");
+	natsort($articlesFileList);
+
+	template_newsList($articlesFileList);
+	template_createNews($articlesFileList);
+
+	return 0;
+}
+
+function template_createNews($articlesFileList) {
+	$defaultValue = "Information numéro ".(count($articlesFileList) + 1);
+
+	echo "<h2>Créer un nouvel article</h2>";
+	echo form(
+		"<label for='articleName'>Nom de l'article</label>"
+			.input("articleName", "text", $defaultValue)
+			.input("submit", "submit", "Créer un nouvel sarticle"),
+		"create.php"
+	);
+
+	return 0;
+}
+function template_newsList($articlesFileList) {
+	echo "<h2>Liste des articles à éditer</h2>";
+	if (count($articlesFileList) == 0) {
+		echo "<p><em>Aucun article encore créé...</em></p>";
+
+		return 1;
+	}
+
+	foreach ($articlesFileList as $i => $path) {
+		// TODO: Utiliser un tableau, c'est + joli
+
+		list($article_id, $article_name) = extractArticleIdAndNames($path);
+
+		echo "<a class=\"fichier\" href='edit.php?articleId=$article_id'>$article_name</a><br>";
+	}
+
+	return 0;
+}
+
+ ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -14,21 +62,7 @@
 		<h1>Liste des articles à éditer</h1>
 	</div>
 	<div id="ListeFichier">
-		<?php
-		session_start();
-		if (empty($_SESSION['admin'])) {
-			echo "<p>Vous n'avez pas les droits requis pour accéder à cette page. <a href='./'>Connectez-vous ici</a></p>";
-		} else {
-			$articlesFileList = glob("../../articles/*.html");
-			// TODO: Utiliser des noms d'articles plutôt que des numéros.
-			// TODO: Utiliser un tableau, c'est + joli
-			foreach ($articlesFileList as $i => $path) {
-				echo "<a class=\"fichier\" href='edit.php?article=$path'>Article ", $i + 1, "</a><br>";
-			}
-			// TODO: Créer l'article sur cette page :)
-			echo '<a href="edit.php?article=../articles/art', count($articlesFileList) + 1, '.html"><input method="post" class="btn_1" type="button" value="Nouvel Article" name="New"></a>';
-		}
-		?>
+		<?php generateContent(); ?>
 	</div>
 </body>
 </html>

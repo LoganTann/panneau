@@ -22,31 +22,15 @@ catch(Exception $e) { die('Erreur : '.$e->getMessage()); }
 function abortIfNotAdmin() {
 	// Pas possible d'utiliser $isNotAdmin pour cause de pb de portée de variable
 	if (empty($_SESSION["admin"])) {
-		?> <!DOCTYPE html> <html> <head> <meta charset="utf-8"> <title>Forbidden access</title> </head> <body>
+		echo '<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <title>Forbidden access</title> </head> <body>';
 
-		<h2>Forbidden Access</h2>
-		<p>Vous n'avez pas les droits pour accéder à cette page. Merci de <a href='/gestion/'>vous connecter</a>.</p>
+		echo `<h2>Forbidden Access</h2>`;
+		echo `<p>Vous n'avez pas les droits pour accéder à cette page. Merci de <a href='/panneau/gestion/'>vous connecter</a>.</p>`;
 
-		</body> </html> <?php
+		echo `</body> </html>`;
 		// Quitte le script
 		die();
 	}
-}
-
-function listFilesInsideFolder($pattern = "./") {
-	/*	Retourne la liste de tous les fichiers correspondant à $pattern
-		utilisable pour afficher la liste des articles disponibles */
-	$retval = ["art1", "art2"];
-
-	return $retval;
-}
-
-function getDatabaseInstance() {
-	/* Permet la connection de la base de donnée. Retourne l'objet permettant
-	   de faire des manipulations sur la base de données*/
-	$db = function ($arg) {return "Appel de la fonction $arg dans la base de données"; };
-
-	return $db;
 }
 
 function editInfos($db, $name, $birthday, $is_student, $is_here, $id = '-1') {
@@ -81,6 +65,40 @@ function getAllStudentNames($db) {
 	return $retval;
 }
 
+// News manager functions
+
+function extractArticleIdAndNames($path) {
+	// explication du regex :
+	// ../../articles/ [obtenir le chiffre] # [obtenir la string] . html
+	$regex_pattern_full = '~..\\/..\\/articles\\/';
+	$regex_pattern_full .= '(\\d+)'; // [obtenir un chiffre]
+	$regex_pattern_full .= '#';
+	$regex_pattern_full .= '([^.]+)'; // [obtenir une chaîne de caractères]
+	$regex_pattern_full .= '.html~';
+
+	if (preg_match($regex_pattern_full, $path, $matches)) {
+		return [$matches[1], $matches[2]];
+	} else {
+		return [0, "*invalid*"];
+	}
+}
+function getArticleFilenameById($id, $rootPath = ".") {
+	$id_matches = glob("$rootPath/articles/$id#*.html");
+	if (!empty($id_matches[0])) {
+		return $id_matches[0];
+	} else {
+		return false;
+	}
+}
+function isNotEmpty(&$var) {
+	// fait !empty() mais exclus la valeur 0
+	if (empty($var)) {
+		return $var === '0';
+	} else {
+		return true;
+	}
+}
+
 // HTML shortcuts (make better code)
 function p($content) {
 	return "<p> $content </p>";
@@ -110,4 +128,3 @@ function form($content, $action = "?", $method = "POST") {
 function input($name, $type = "text", $value = "") {
 	return "<input type='$type' name='$name' value='$value' />";
 }
- ?>

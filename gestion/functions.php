@@ -151,3 +151,42 @@ function displayAbsentTeacher(){
 	$getabsent->closeCursor();
 	return $name;
 }
+
+function displayTodaysBirthday($db) {
+	/*Affiche les anniversaires du jour*/
+	$currentDay = date("m-d"); // month - day
+	$getBirthdays = $db->query("SELECT * FROM `accounts`
+		 						WHERE birthday LIKE '%$currentDay' ");
+	$numberOfMatches = $getBirthdays->rowCount();
+	
+	if ($numberOfMatches <= 0) {
+		echo "<em>Aucun anniversaire aujourd'hui</em>";
+		return 0; // Pas la peine d'aller plus loin
+	} elseif ($numberOfMatches == 1) {
+		echo "<p>1 anniversaire aujourd'hui</p>";
+	} else {
+		echo "<p>$numberOfMatches anniversaires aujourd'hui</p>";
+	}
+	
+	echo "<ul>";
+	while ($person_s_birthday = $getBirthdays->fetch()) {
+		$name = $person_s_birthday["name"];
+		$age = calculateAge($person_s_birthday["birthday"]);
+		$is_teacher = empty($person_s_birthday["is_student"]) ?"(est prof)":"";
+		echo "<li>$name ($age ans) $is_teacher</li>";
+	}
+	echo "</ul>";
+	return 0;
+}
+
+function calculateAge($birthdate) {
+	/* Récupère une date sous la forme Y-m-d et calcule la différence d'année
+	   avec l'année actuelle (age en assumant que l'anniv est passé ou aujd)*/
+	$age = 0;
+	$currentYear = date("Y");
+	$yearOfBirth = substr($birthdate, 0, 4);
+	if ($yearOfBirth > 1) { // c'est un chiffre
+		$age = $currentYear - $yearOfBirth;
+	}
+	return $age;
+}

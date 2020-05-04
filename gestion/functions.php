@@ -147,4 +147,7 @@ function displayAbsentTeacher(){
 	$getabsent = $db->query("SELECT name FROM accounts WHERE is_student = 0 AND is_absent = 1");
 	while ($absent = $getabsent->fetch()) {
 		$name = $absent['name'];
+	}
+	$getabsent->closeCursor();
+	return $name;
 }

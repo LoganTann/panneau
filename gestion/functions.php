@@ -143,6 +143,9 @@ function form($content, $action = "?", $method = "POST") {
 function input($name, $type = "text", $value = "") {
 	return "<input type='$type' name='$name' value='$value' />";
 }
+
+
+// Display Panel functions
 function displayAbsentTeacher(){
 	$getabsent = $db->query("SELECT name FROM accounts WHERE is_student = 0 AND is_absent = 1");
 	while ($absent = $getabsent->fetch()) {
@@ -151,14 +154,13 @@ function displayAbsentTeacher(){
 	$getabsent->closeCursor();
 	return $name;
 }
-
 function displayTodaysBirthday($db) {
-	/*Affiche les anniversaires du jour*/
+	/* Affiche les anniversaires du jour */
 	$currentDay = date("m-d"); // month - day
 	$getBirthdays = $db->query("SELECT * FROM `accounts`
 		 						WHERE birthday LIKE '%$currentDay' ");
 	$numberOfMatches = $getBirthdays->rowCount();
-	
+
 	if ($numberOfMatches <= 0) {
 		echo "<em>Aucun anniversaire aujourd'hui</em>";
 		return 0; // Pas la peine d'aller plus loin
@@ -167,7 +169,7 @@ function displayTodaysBirthday($db) {
 	} else {
 		echo "<p>$numberOfMatches anniversaires aujourd'hui</p>";
 	}
-	
+
 	echo "<ul>";
 	while ($person_s_birthday = $getBirthdays->fetch()) {
 		$name = $person_s_birthday["name"];
@@ -177,6 +179,15 @@ function displayTodaysBirthday($db) {
 	}
 	echo "</ul>";
 	return 0;
+}
+function displayCurrentDay() {
+	$dayNum = date("j");
+	if ($dayNum == 1) {
+		$dayNum = "1<sup>er</sup>";
+	}
+
+	echo getFrenchDay(), " ", $dayNum; // ex : Mercredi 06
+	echo " ", getFrenchMonth(), " ", date("Y"); // ex : Mai 2020
 }
 
 function calculateAge($birthdate) {
@@ -189,4 +200,44 @@ function calculateAge($birthdate) {
 		$age = $currentYear - $yearOfBirth;
 	}
 	return $age;
+}
+function getFrenchDay() {
+	/* Récupère le jour de la semaine en français (retourne lundi, mardi...)
+	*/
+	$currentDay = date("N");
+	// date("N") -> Représentation numérique ISO-8601 du jour de la semaine
+	// 1 (pour Lundi) à 7 (pour Dimanche)
+	$translation = [
+		"-arrays starts at 0-",
+		"Lundi",
+		"Mardi",
+		"Mercredi",
+		"Jeudi",
+		"Vendredi",
+		"Samedi",
+		"Dimanche"
+	];
+	return $translation[$currentDay];
+}
+function getFrenchMonth() {
+	/* Idem que getFrenchDay() mais pour les mois
+	*/
+	$currentMonth = date("n");
+	// date("n") -> Mois sans les zéros initiaux. Retour : 1 à 12
+	$translation = [
+		"-arrays starts at 0-",
+	 	"Janvier",
+		"Février",
+		"Mars",
+		"Avril",
+		"Mai",
+		"Juin",
+		"Juillet",
+		"Août",
+		"Septembre",
+		"Octobre",
+		"Novembre",
+		"Décembre",
+	];
+	return $translation[$currentMonth];
 }

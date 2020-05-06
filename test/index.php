@@ -2,6 +2,9 @@
 
 require '../gestion/functions.php';
 
+echo "displayTodaysBirthday(\$db) : ";
 displayTodaysBirthday($db);
-echo "<br>";
+echo "<br>displayCurrentDay() : ";
 displayCurrentDay();
+echo "<br>displayCurrentTime() : ";
+displayCurrentTime();

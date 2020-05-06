@@ -189,6 +189,9 @@ function displayCurrentDay() {
 	echo getFrenchDay(), " ", $dayNum; // ex : Mercredi 06
 	echo " ", getFrenchMonth(), " ", date("Y"); // ex : Mai 2020
 }
+function displayCurrentTime() {
+	echo date("G:H");
+}
 
 function calculateAge($birthdate) {
 	/* Récupère une date sous la forme Y-m-d et calcule la différence d'année

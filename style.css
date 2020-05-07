@@ -27,3 +27,40 @@ div{
   text-decoration: underline;
 }
 .ArticleContent{}
+
+body{
+  display: grid;
+  grid-template-areas: "j n n"
+                       "h a b"
+                       "h c d";
+  grid-template-rows: 80% 10% 10%;
+  grid-template-columns: 20% 40% 40%;
+}
+.jour{
+  grid-area: j;
+  background: yellow;
+}
+.contenu_news{
+  grid-area: n;
+  background: lightblue;
+}
+.heure{
+  grid-area: h;
+  background: grey;
+}
+.titre_news_1{
+  grid-area: a;
+  background: purple;
+}
+.titre_news_2{
+  grid-area: b;
+  background: lightgreen;
+}
+.titre_news_3{
+  grid-area: c;
+  background: red;
+}
+.titre_news_4{
+  grid-area: d;
+  background: orange;
+}

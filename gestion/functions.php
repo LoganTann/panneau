@@ -196,7 +196,7 @@ function displayCurrentDay() {
 	echo " ", getFrenchMonth(), " ", date("Y"); // ex : Mai 2020
 }
 function displayCurrentTime() {
-	echo date("G:H");
+	echo date("H:i");
 }
 
 function calculateAge($birthdate) {

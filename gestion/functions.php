@@ -147,16 +147,12 @@ function input($name, $type = "text", $value = "") {
 
 // Display Panel functions
 function displayAbsentTeacher($db){
-	$getabsent = $db->query("SELECT name FROM accounts WHERE is_student = 0 AND is_here = 0");
-	$i=0;
-	while ($absent = $getabsent->fetch()) {
-		$name[$i] = $absent['name'];
-		$i++;
-	}
+	$getabsent = $db->query("
+		SELECT name FROM accounts
+		WHERE is_student = 0 AND is_here = 0");
 	echo "<ul><li>professeurs absents :</li><ul>";
-	$getabsent->closeCursor();
-	foreach ($name as $n => $value) {
-		echo "<li>$value</li>";
+	while ($absent = $getabsent->fetch()) {
+		echo '<li>'.$absent['name'].'</li>';
 	}
 	echo "</ul></ul>";
 }

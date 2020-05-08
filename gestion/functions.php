@@ -146,13 +146,19 @@ function input($name, $type = "text", $value = "") {
 
 
 // Display Panel functions
-function displayAbsentTeacher(){
-	$getabsent = $db->query("SELECT name FROM accounts WHERE is_student = 0 AND is_absent = 1");
+function displayAbsentTeacher($db){
+	$getabsent = $db->query("SELECT name FROM accounts WHERE is_student = 0 AND is_here = 0");
+	$i=0;
 	while ($absent = $getabsent->fetch()) {
-		$name = $absent['name'];
+		$name[$i] = $absent['name'];
+		$i++;
 	}
+	echo "<ul><li>professeurs absents :</li><ul>";
 	$getabsent->closeCursor();
-	return $name;
+	foreach ($name as $n => $value) {
+		echo "<li>$value</li>";
+	}
+	echo "</ul></ul>";
 }
 function displayTodaysBirthday($db) {
 	/* Affiche les anniversaires du jour */

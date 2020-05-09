@@ -246,3 +246,23 @@ function getFrenchMonth() {
 	];
 	return $translation[$currentMonth];
 }
+function displayArticle($rootPath = ".", $delay = 30){
+	header("refresh: $delay");
+	if(!isset($_SESSION['idOfArticleToDisplay'])){
+		$_SESSION['idOfArticleToDisplay'] = 0;
+	}else {
+		$i = glob("$rootPath/articles/*.html");
+		$max = 0;
+		foreach ($i as $key => $value) {
+			$max++;
+		}
+		if ($_SESSION['idOfArticleToDisplay'] < $max-1) {
+			$_SESSION['idOfArticleToDisplay']++;
+		} else {
+			$_SESSION['idOfArticleToDisplay'] = 0;
+		}
+	}
+	$file = getArticleFilenameById($_SESSION['idOfArticleToDisplay'], $rootPath);
+	echo file_get_contents($file);
+}
+?>

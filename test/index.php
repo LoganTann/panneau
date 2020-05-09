@@ -1,5 +1,4 @@
 <?php
-
 require '../gestion/functions.php';
 
 echo "displayTodaysBirthday(\$db) : ";
@@ -10,4 +9,6 @@ echo "<br>displayCurrentTime() : ";
 displayCurrentTime();
 echo "<br>displayAbsentTeacher() : ";
 displayAbsentTeacher($db);
+echo "<br>displayArticle() : ";
+displayArticle("..", 3);
 ?>

@@ -147,16 +147,12 @@ function input($name, $type = "text", $value = "") {
 
 // Display Panel functions
 function displayAbsentTeacher($db){
-	$getabsent = $db->query("SELECT name FROM accounts WHERE is_student = 0 AND is_here = 0");
-	$i=0;
-	while ($absent = $getabsent->fetch()) {
-		$name[$i] = $absent['name'];
-		$i++;
-	}
+	$getabsent = $db->query("
+		SELECT name FROM accounts
+		WHERE is_student = 0 AND is_here = 0");
 	echo "<ul><li>professeurs absents :</li><ul>";
-	$getabsent->closeCursor();
-	foreach ($name as $n => $value) {
-		echo "<li>$value</li>";
+	while ($absent = $getabsent->fetch()) {
+		echo '<li>'.$absent['name'].'</li>';
 	}
 	echo "</ul></ul>";
 }
@@ -250,3 +246,25 @@ function getFrenchMonth() {
 	];
 	return $translation[$currentMonth];
 }
+function displayArticle($rootPath = ".", $delay = 30){
+	header("refresh: $delay");
+	if(!isset($_SESSION['idOfArticleToDisplay'])){
+		$_SESSION['idOfArticleToDisplay'] = 0;
+	}else {
+		$i = glob("$rootPath/articles/*.html");
+		$max = 0;
+		foreach ($i as $key => $value) {
+			$max++;
+		}
+		if ($_SESSION['idOfArticleToDisplay'] < $max-1) {
+			$_SESSION['idOfArticleToDisplay']++;
+		} else {
+			$_SESSION['idOfArticleToDisplay'] = 0;
+		}
+	}
+	$file = getArticleFilenameById($_SESSION['idOfArticleToDisplay'], $rootPath);
+	$articleContent = file_get_contents($file);
+	$articleTraité = str_replace("\n", "<br>", $articleContent);
+	echo $articleTraité;
+}
+?>

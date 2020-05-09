@@ -9,6 +9,6 @@ echo "<br>displayCurrentTime() : ";
 displayCurrentTime();
 echo "<br>displayAbsentTeacher() : ";
 displayAbsentTeacher($db);
-echo "<br>displayArticle() : ";
+echo "<br>displayArticle() : <br>";
 displayArticle("..", 3);
 ?>

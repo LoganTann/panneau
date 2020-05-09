@@ -263,6 +263,8 @@ function displayArticle($rootPath = ".", $delay = 30){
 		}
 	}
 	$file = getArticleFilenameById($_SESSION['idOfArticleToDisplay'], $rootPath);
-	echo file_get_contents($file);
+	$articleContent = file_get_contents($file);
+	$articleTraité = str_replace("\n", "<br>", $articleContent);
+	echo $articleTraité;
 }
 ?>

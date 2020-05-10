@@ -82,7 +82,7 @@ function getAllAccountsNames($db) {
 
 // News manager functions
 
-function extractArticleIdAndNames($path, $rootPath='..\\/..\\/') {
+function extractArticleIdAndNames($path, $rootPath = '..\\/..\\/') {
 	// description : à partir d'une addresse relative d'article, extrait
 	// l'identifiant et le nom
 	// explication du regex :
@@ -147,9 +147,8 @@ function input($name, $type = "text", $value = "") {
 	return "<input type='$type' name='$name' value='$value' />";
 }
 
-
 // Display Panel functions
-function displayAbsentTeacher($db){
+function displayAbsentTeacher($db) {
 	$getabsent = $db->query("
 		SELECT name FROM accounts
 		WHERE is_student = 0 AND is_here = 0");
@@ -168,6 +167,7 @@ function displayTodaysBirthday($db) {
 
 	if ($numberOfMatches <= 0) {
 		echo "<em>Aucun anniversaire aujourd'hui</em>";
+
 		return 0; // Pas la peine d'aller plus loin
 	} elseif ($numberOfMatches == 1) {
 		echo "<p>1 anniversaire aujourd'hui</p>";
@@ -179,10 +179,11 @@ function displayTodaysBirthday($db) {
 	while ($person_s_birthday = $getBirthdays->fetch()) {
 		$name = $person_s_birthday["name"];
 		$age = calculateAge($person_s_birthday["birthday"]);
-		$is_teacher = empty($person_s_birthday["is_student"]) ?"(est prof)":"";
+		$is_teacher = empty($person_s_birthday["is_student"]) ? "(est prof)" : "";
 		echo "<li>$name ($age ans) $is_teacher</li>";
 	}
 	echo "</ul>";
+
 	return 0;
 }
 function displayCurrentDay() {
@@ -207,6 +208,7 @@ function calculateAge($birthdate) {
 	if ($yearOfBirth > 1) { // c'est un chiffre
 		$age = $currentYear - $yearOfBirth;
 	}
+
 	return $age;
 }
 function getFrenchDay() {
@@ -223,8 +225,9 @@ function getFrenchDay() {
 		"Jeudi",
 		"Vendredi",
 		"Samedi",
-		"Dimanche"
+		"Dimanche",
 	];
+
 	return $translation[$currentDay];
 }
 function getFrenchMonth() {
@@ -234,7 +237,7 @@ function getFrenchMonth() {
 	// date("n") -> Mois sans les zéros initiaux. Retour : 1 à 12
 	$translation = [
 		"-arrays starts at 0-",
-	 	"Janvier",
+		"Janvier",
 		"Février",
 		"Mars",
 		"Avril",
@@ -247,6 +250,6 @@ function getFrenchMonth() {
 		"Novembre",
 		"Décembre",
 	];
+
 	return $translation[$currentMonth];
 }
-?>

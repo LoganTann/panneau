@@ -14,11 +14,11 @@ $article_id = &$_SESSION['idOfArticleToDisplay'];
 //   Bon à savoir : passer la référence d'une variable indéfinie va la créer
 //   automatiquement avec comme valeur NULL.
 
-if (! is_numeric($article_id)) { // valeur par défaut
+if (!is_numeric($article_id)) { // valeur par défaut
 	$article_id = 0;
 }
 
-if ($article_id < $max-1) {
+if ($article_id < $max - 1) {
 	$article_id++;
 } else {
 	$article_id = 0;

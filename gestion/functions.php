@@ -82,10 +82,13 @@ function getAllAccountsNames($db) {
 
 // News manager functions
 
-function extractArticleIdAndNames($path) {
+function extractArticleIdAndNames($path, $rootPath='..\\/..\\/') {
+	// description : à partir d'une addresse relative d'article, extrait
+	// l'identifiant et le nom
 	// explication du regex :
 	// ../../articles/ [obtenir le chiffre] # [obtenir la string] . html
-	$regex_pattern_full = '~..\\/..\\/articles\\/';
+	$regex_pattern_full = '~'.$rootPath;
+	$regex_pattern_full .= 'articles\\/';
 	$regex_pattern_full .= '(\\d+)'; // [obtenir un chiffre]
 	$regex_pattern_full .= '#';
 	$regex_pattern_full .= '([^.]+)'; // [obtenir une chaîne de caractères]
@@ -245,26 +248,5 @@ function getFrenchMonth() {
 		"Décembre",
 	];
 	return $translation[$currentMonth];
-}
-function displayArticle($rootPath = ".", $delay = 30){
-	header("refresh: $delay");
-	if(!isset($_SESSION['idOfArticleToDisplay'])){
-		$_SESSION['idOfArticleToDisplay'] = 0;
-	}else {
-		$i = glob("$rootPath/articles/*.html");
-		$max = 0;
-		foreach ($i as $key => $value) {
-			$max++;
-		}
-		if ($_SESSION['idOfArticleToDisplay'] < $max-1) {
-			$_SESSION['idOfArticleToDisplay']++;
-		} else {
-			$_SESSION['idOfArticleToDisplay'] = 0;
-		}
-	}
-	$file = getArticleFilenameById($_SESSION['idOfArticleToDisplay'], $rootPath);
-	$articleContent = file_get_contents($file);
-	$articleTraité = str_replace("\n", "<br>", $articleContent);
-	echo $articleTraité;
 }
 ?>

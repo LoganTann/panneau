@@ -82,10 +82,13 @@ function getAllAccountsNames($db) {
 
 // News manager functions
 
-function extractArticleIdAndNames($path) {
+function extractArticleIdAndNames($path, $rootPath = '..\\/..\\/') {
+	// description : à partir d'une addresse relative d'article, extrait
+	// l'identifiant et le nom
 	// explication du regex :
 	// ../../articles/ [obtenir le chiffre] # [obtenir la string] . html
-	$regex_pattern_full = '~..\\/..\\/articles\\/';
+	$regex_pattern_full = '~'.$rootPath;
+	$regex_pattern_full .= 'articles\\/';
 	$regex_pattern_full .= '(\\d+)'; // [obtenir un chiffre]
 	$regex_pattern_full .= '#';
 	$regex_pattern_full .= '([^.]+)'; // [obtenir une chaîne de caractères]
@@ -142,4 +145,111 @@ function form($content, $action = "?", $method = "POST") {
 }
 function input($name, $type = "text", $value = "") {
 	return "<input type='$type' name='$name' value='$value' />";
+}
+
+// Display Panel functions
+function displayAbsentTeacher($db) {
+	$getabsent = $db->query("
+		SELECT name FROM accounts
+		WHERE is_student = 0 AND is_here = 0");
+	echo "<ul><li>professeurs absents :</li><ul>";
+	while ($absent = $getabsent->fetch()) {
+		echo '<li>'.$absent['name'].'</li>';
+	}
+	echo "</ul></ul>";
+}
+function displayTodaysBirthday($db) {
+	/* Affiche les anniversaires du jour */
+	$currentDay = date("m-d"); // month - day
+	$getBirthdays = $db->query("SELECT * FROM `accounts`
+		 						WHERE birthday LIKE '%$currentDay' ");
+	$numberOfMatches = $getBirthdays->rowCount();
+
+	if ($numberOfMatches <= 0) {
+		echo "<em>Aucun anniversaire aujourd'hui</em>";
+
+		return 0; // Pas la peine d'aller plus loin
+	} elseif ($numberOfMatches == 1) {
+		echo "<p>1 anniversaire aujourd'hui</p>";
+	} else {
+		echo "<p>$numberOfMatches anniversaires aujourd'hui</p>";
+	}
+
+	echo "<ul>";
+	while ($person_s_birthday = $getBirthdays->fetch()) {
+		$name = $person_s_birthday["name"];
+		$age = calculateAge($person_s_birthday["birthday"]);
+		$is_teacher = empty($person_s_birthday["is_student"]) ? "(est prof)" : "";
+		echo "<li>$name ($age ans) $is_teacher</li>";
+	}
+	echo "</ul>";
+
+	return 0;
+}
+function displayCurrentDay() {
+	$dayNum = date("j");
+	if ($dayNum == 1) {
+		$dayNum = "1<sup>er</sup>";
+	}
+
+	echo getFrenchDay(), " ", $dayNum; // ex : Mercredi 06
+	echo " ", getFrenchMonth(), " ", date("Y"); // ex : Mai 2020
+}
+function displayCurrentTime() {
+	echo date("H:i");
+}
+
+function calculateAge($birthdate) {
+	/* Récupère une date sous la forme Y-m-d et calcule la différence d'année
+	   avec l'année actuelle (age en assumant que l'anniv est passé ou aujd)*/
+	$age = 0;
+	$currentYear = date("Y");
+	$yearOfBirth = substr($birthdate, 0, 4);
+	if ($yearOfBirth > 1) { // c'est un chiffre
+		$age = $currentYear - $yearOfBirth;
+	}
+
+	return $age;
+}
+function getFrenchDay() {
+	/* Récupère le jour de la semaine en français (retourne lundi, mardi...)
+	*/
+	$currentDay = date("N");
+	// date("N") -> Représentation numérique ISO-8601 du jour de la semaine
+	// 1 (pour Lundi) à 7 (pour Dimanche)
+	$translation = [
+		"-arrays starts at 0-",
+		"Lundi",
+		"Mardi",
+		"Mercredi",
+		"Jeudi",
+		"Vendredi",
+		"Samedi",
+		"Dimanche",
+	];
+
+	return $translation[$currentDay];
+}
+function getFrenchMonth() {
+	/* Idem que getFrenchDay() mais pour les mois
+	*/
+	$currentMonth = date("n");
+	// date("n") -> Mois sans les zéros initiaux. Retour : 1 à 12
+	$translation = [
+		"-arrays starts at 0-",
+		"Janvier",
+		"Février",
+		"Mars",
+		"Avril",
+		"Mai",
+		"Juin",
+		"Juillet",
+		"Août",
+		"Septembre",
+		"Octobre",
+		"Novembre",
+		"Décembre",
+	];
+
+	return $translation[$currentMonth];
 }

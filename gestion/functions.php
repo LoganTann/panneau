@@ -108,6 +108,18 @@ function getArticleFilenameById($id, $rootPath = ".") {
 		return false;
 	}
 }
+function getArticleNameById($id, $rootPath = ".") {
+	$path = getArticleFilenameById($id, $rootPath);
+	if ($path===false) {
+		return false;
+	}
+	list($id, $name) = extractArticleIdAndNames($path, '');
+	if ($name == "*invalid*") {
+		return false;
+	} else {
+		return $name;
+	}
+}
 function isNotEmpty(&$var) {
 	// fait !empty() mais exclus la valeur 0
 	if (empty($var)) {

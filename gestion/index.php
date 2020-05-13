@@ -32,8 +32,7 @@ function printTemplate_Index() {
 
 	echo p(a("news/", "Gestion des articles :"));
 	echo ul(
-		a("news/", "Liste des articles"),
-		"Ajouter un article (indisponible...)"
+		a("news/", "Liste des articles; ajouter un article"),
 	);
 }
 function print_goodTemplate($status) {

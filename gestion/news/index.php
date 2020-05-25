@@ -20,7 +20,7 @@ function template_createNews($articlesFileList) {
 	echo form(
 		"<label for='articleName'>Nom de l'article</label>"
 			.input("articleName", "text", $defaultValue)
-			.input("submit", "submit", "Créer un nouvel sarticle"),
+			.input("submit", "submit", "Créer un nouvel article"),
 		"create.php"
 	);
 

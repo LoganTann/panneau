@@ -15,12 +15,14 @@ function main() {
 			print_r($articlesFileList);
 	echo "</textarea>";
 
-	if (! isset($_GET["id"])) {
+	if (!isset($_GET["id"])) {
 		echo p("Erreur : veuillez spécifier un article à traiter en paramètre GET.");
+
 		return 1;
 	}
 	if (getArticleFilenameById($_GET["id"], "../..") === false) {
 		echo p("Erreur : l'id spécifié ne correspond à aucun article existant.");
+
 		return 1;
 	}
 	$id = $_GET["id"];
@@ -77,12 +79,12 @@ function renameFile($original, $target) {
 
 function moveItemUp($id, $articlesFileList) {
 	// Annule la tâche si on veut déplacer l'article le 1er encore plus haut
-	if ($id <= 0 ) {
+	if ($id <= 0) {
 		return false;
 	}
 	// Échange simplement les valeurs de l'item actuel avec l'item "supérieur".
-	$upperItemContent = $articlesFileList[$id-1];
-	$articlesFileList[$id-1] = $articlesFileList[$id];
+	$upperItemContent = $articlesFileList[$id - 1];
+	$articlesFileList[$id - 1] = $articlesFileList[$id];
 	$articlesFileList[$id] = $upperItemContent;
 
 	return $articlesFileList;
@@ -93,8 +95,8 @@ function moveItemDown($id, $articlesFileList) {
 		return false;
 	}
 	// Échange simplement les valeurs de l'item actuel avec l'item "inférieur".
-	$downerItemContent = $articlesFileList[$id+1];
-	$articlesFileList[$id+1] = $articlesFileList[$id];
+	$downerItemContent = $articlesFileList[$id + 1];
+	$articlesFileList[$id + 1] = $articlesFileList[$id];
 	$articlesFileList[$id] = $downerItemContent;
 
 	return $articlesFileList;

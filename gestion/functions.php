@@ -110,7 +110,7 @@ function getArticleFilenameById($id, $rootPath = ".") {
 }
 function getArticleNameById($id, $rootPath = ".") {
 	$path = getArticleFilenameById($id, $rootPath);
-	if ($path===false) {
+	if ($path === false) {
 		return false;
 	}
 	list($id, $name) = extractArticleIdAndNames($path, '');

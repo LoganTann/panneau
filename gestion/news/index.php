@@ -38,8 +38,10 @@ function template_newsList($articlesFileList) {
 		// TODO: Utiliser un tableau, c'est + joli
 
 		list($article_id, $article_name) = extractArticleIdAndNames($path);
-
-		echo "<a class=\"fichier\" href='edit.php?articleId=$article_id'>$article_name</a><br>";
+		echo "<p>";
+		echo "<a class=\"fichier\" href='edit.php?articleId=$article_id'>$article_name</a>";
+		echo "<a style=\"float: right;\" href='processing.php?id=$article_id'>supprimer, renommer, déplacer...</a>";
+		echo "</p>";
 	}
 
 	return 0;

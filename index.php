@@ -28,8 +28,8 @@ $articlePath = $articlesFileList[$article_id];
 $articleContent = file_get_contents($articlePath);
 $article_generated = str_replace("\n", "<br>", $articleContent);
 
-function displayArticlesTitle($currentArticleId){
-	for ($i=0; $i < 4; $i++) {
+function displayArticlesTitle($currentArticleId) {
+	for ($i = 0; $i < 4; $i++) {
 		$iplus1 = $i + 1;
 		$articleName = getArticleNameById($i);
 		if ($articleName === false) {
@@ -61,7 +61,7 @@ function displayArticlesTitle($currentArticleId){
 		<?php echo displayCurrentDay(); ?>
 	</div>
 	<div class="contenu_news">
-		<?php echo $article_generated;?>
+		<?php echo $article_generated; ?>
 	</div>
 
 	<div class="heure">
